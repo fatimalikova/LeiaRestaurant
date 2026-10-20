@@ -1,3 +1,6 @@
 <Solution>
-  <Project Path="LeiaRestaurant/LeiaRestaurant.csproj" />
+  <Project Path="Leia.Application/Leia.Application.csproj" Id="ac59ad98-b45e-40a5-a8ee-173847513e5f" />
+  <Project Path="Leia.Domain/Leia.Domain.csproj" Id="a573b162-0d20-4928-8055-bac1887dd223" />
+  <Project Path="Leia.Infrastructure/Leia.Infrastructure.csproj" Id="6196d325-1a35-461f-8efe-b176be7dda41" />
+  <Project Path="LeiaRestaurant/Leia.Api.csproj" />
 </Solution>

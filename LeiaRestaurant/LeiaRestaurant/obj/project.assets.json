@@ -1,11 +1,67 @@
 {
   "version": 4,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "Leia.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Leia.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Leia.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Leia.Application.dll": {}
+        }
+      },
+      "Leia.Domain/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Leia.Domain.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Leia.Domain.dll": {}
+        }
+      },
+      "Leia.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Leia.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Leia.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Leia.Infrastructure.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Leia.Application/1.0.0": {
+      "type": "project",
+      "path": "../Leia.Application/Leia.Application.csproj",
+      "msbuildProject": "../Leia.Application/Leia.Application.csproj"
+    },
+    "Leia.Domain/1.0.0": {
+      "type": "project",
+      "path": "../Leia.Domain/Leia.Domain.csproj",
+      "msbuildProject": "../Leia.Domain/Leia.Domain.csproj"
+    },
+    "Leia.Infrastructure/1.0.0": {
+      "type": "project",
+      "path": "../Leia.Infrastructure/Leia.Infrastructure.csproj",
+      "msbuildProject": "../Leia.Infrastructure/Leia.Infrastructure.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "Leia.Application >= 1.0.0",
+      "Leia.Infrastructure >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\fmeli\\.nuget\\packages\\": {},
@@ -14,9 +70,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\LeiaRestaurant.csproj",
-      "projectName": "LeiaRestaurant",
-      "projectPath": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\LeiaRestaurant.csproj",
+      "projectUniqueName": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\Leia.Api.csproj",
+      "projectName": "Leia.Api",
+      "projectPath": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\Leia.Api.csproj",
       "packagesPath": "C:\\Users\\fmeli\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\obj\\",
       "projectStyle": "PackageReference",
@@ -39,7 +95,14 @@
         "net10.0": {
           "framework": "net10.0",
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Leia.Application.csproj": {
+              "projectPath": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Leia.Application.csproj"
+            },
+            "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Leia.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Leia.Infrastructure.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

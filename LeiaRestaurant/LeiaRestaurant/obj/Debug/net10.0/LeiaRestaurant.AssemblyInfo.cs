@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LeiaRestaurant")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee72889b5d8e0094169a7c5d852972ff6051d865")]
 [assembly: System.Reflection.AssemblyProductAttribute("LeiaRestaurant")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LeiaRestaurant")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
