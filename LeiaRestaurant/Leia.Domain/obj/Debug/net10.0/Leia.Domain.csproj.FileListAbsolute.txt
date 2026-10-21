@@ -1,0 +1,14 @@
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Domain.AssemblyInfoInputs.cache
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Domain.AssemblyInfo.cs
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Domain.csproj.CoreCompileInputs.cache
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Domain.sourcelink.json
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Domain.csproj.AssemblyReference.cache
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\bin\Debug\net10.0\Leia.Domain.deps.json
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\bin\Debug\net10.0\Leia.Domain.dll
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\bin\Debug\net10.0\Leia.Domain.pdb
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Domain.dll
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\refint\Leia.Domain.dll
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Domain.pdb
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\ref\Leia.Domain.dll
+C:\Users\fmeli\OneDrive\Desktop\Leia\LeiaRestaurant\Leia.Domain\obj\Debug\net10.0\Leia.Dom.7CD175A3.Up2Date
