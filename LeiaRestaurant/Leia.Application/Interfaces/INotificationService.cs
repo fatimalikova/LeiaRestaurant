@@ -1,4 +1,5 @@
 ﻿using Leia.Application.Dtos.Common;
+using Leia.Application.Dtos.NotificationDtos;
 using Leia.Application.Models;
 using Leia.Domain.Enums;
 using System;

@@ -3,24 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\ifileuploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\ifileuploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\iunavailabledayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\iunavailabledayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\iprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\iprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\isystemsettingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\isystemsettingservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\isliderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\isliderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\profiledtos\\profileresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\profiledtos\\profileresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\inotificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\profiledtos\\changepassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\profiledtos\\changepassworddto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\profiledtos\\updateprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\profiledtos\\updateprofiledto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\isliderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\isliderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\ireviewservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -31,16 +43,108 @@
       "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\iorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\imenuitemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\imenuitemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\imenucategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\imenucategoryservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\iunavailabledayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\iunavailabledayservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\imenuitemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\imenuitemservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\restaurantdtos\\updaterestaurantstatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\restaurantdtos\\updaterestaurantstatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\systemsettingdtos\\responsesystemsettingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\systemsettingdtos\\responsesystemsettingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\systemsettingdtos\\updatesystemsettingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\systemsettingdtos\\updatesystemsettingdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\sliderdtos\\responsesliderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\sliderdtos\\responsesliderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\sliderdtos\\updatesliderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\sliderdtos\\updatesliderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\sliderdtos\\createsliderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\sliderdtos\\createsliderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\notificationdtos\\responsenotificationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\notificationdtos\\responsenotificationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\reviewdtos\\responsereviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\reviewdtos\\responsereviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\reviewdtos\\createreviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\reviewdtos\\createreviewdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\orderdtos\\orderfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\orderdtos\\orderfilterdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\orderdtos\\responseorderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\orderdtos\\responseorderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\orderdtos\\cancelorderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\orderdtos\\cancelorderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\orderdtos\\updateorderstatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\orderdtos\\updateorderstatusdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\orderdtos\\createorderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\orderdtos\\createorderdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\menuitemdtos\\using fluentvalidation;.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\menuitemdtos\\using fluentvalidation;.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\menuitemdtos\\updatemenuitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\menuitemdtos\\updatemenuitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\menuitemdtos\\createmenuitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\menuitemdtos\\createmenuitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\menucategorydtos\\responsemenucategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\menucategorydtos\\responsemenucategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\menucategorydtos\\updatemenucategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\menucategorydtos\\updatemenucategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\menucategorydtos\\createmenucategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\menucategorydtos\\createmenucategorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\unavailabledaydtos\\responseunavailabledaydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\unavailabledaydtos\\responseunavailabledaydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\dtos\\unavailabledaydtos\\createunavailabledaydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\dtos\\unavailabledaydtos\\createunavailabledaydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\ifileuploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\ifileuploadservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\iemailservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\iworkinghourservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -53,10 +157,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\iappuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\iappuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\iprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|solutionrelative:leia.application\\interfaces\\iprofileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AC59AD98-B45E-40A5-A8EE-173847513E5F}|Leia.Application\\Leia.Application.csproj|c:\\users\\fmeli\\onedrive\\desktop\\leia\\leiarestaurant\\leia.application\\interfaces\\ijwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -318,7 +418,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Bookmark",
@@ -342,104 +442,130 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IFileUploadService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IFileUploadService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IFileUploadService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IFileUploadService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IFileUploadService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 4,
+              "Title": "ProfileResponseDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ProfileDtos\\ProfileResponseDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\ProfileDtos\\ProfileResponseDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ProfileDtos\\ProfileResponseDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\ProfileDtos\\ProfileResponseDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:58:50.702Z",
+              "WhenOpened": "2026-10-23T20:14:58.326Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "IEmailService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IEmailService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IEmailService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IEmailService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IEmailService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "ChangePasswordDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ProfileDtos\\ChangePasswordDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\ProfileDtos\\ChangePasswordDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ProfileDtos\\ChangePasswordDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\ProfileDtos\\ChangePasswordDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:58:26.985Z",
+              "WhenOpened": "2026-10-23T20:14:38.961Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "ISystemSettingService.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\ISystemSettingService.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\ISystemSettingService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\ISystemSettingService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\ISystemSettingService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABeAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\ISystemSettingService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\ISystemSettingService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-23T19:58:02.286Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ISliderService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\ISliderService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\ISliderService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\ISliderService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\ISliderService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA3AAAAAAAAAA==",
+              "DocumentIndex": 2,
+              "Title": "IProfileService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IProfileService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IProfileService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IProfileService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IProfileService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAoAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:57:25.875Z",
+              "WhenOpened": "2026-10-23T19:51:58.702Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "INotificationService.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\INotificationService.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\INotificationService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\INotificationService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\INotificationService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\INotificationService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\INotificationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-23T19:56:54.171Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "IReviewService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IReviewService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IReviewService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IReviewService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IReviewService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "IUnavailableDayService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IUnavailableDayService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IUnavailableDayService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IUnavailableDayService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IUnavailableDayService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:56:27.519Z",
+              "WhenOpened": "2026-10-23T19:53:59.722Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
+              "Title": "UpdateProfileDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ProfileDtos\\UpdateProfileDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\ProfileDtos\\UpdateProfileDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ProfileDtos\\UpdateProfileDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\ProfileDtos\\UpdateProfileDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:14:25.885Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "IOrderService.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IOrderService.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IOrderService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IOrderService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IOrderService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IOrderService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IOrderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-23T19:55:51.769Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
+              "Title": "IMenuCategoryService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IMenuCategoryService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IMenuCategoryService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IMenuCategoryService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IMenuCategoryService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T19:54:54.081Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "IMenuItemService.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IMenuItemService.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IMenuItemService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IMenuItemService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IMenuItemService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IMenuItemService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IMenuItemService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-10-23T19:55:21.697Z",
               "EditorCaption": ""
@@ -447,84 +573,379 @@
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "IMenuCategoryService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IMenuCategoryService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IMenuCategoryService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IMenuCategoryService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IMenuCategoryService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABFAAAAAAAAAA==",
+              "Title": "IReviewService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IReviewService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IReviewService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IReviewService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IReviewService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:54:54.081Z",
+              "WhenOpened": "2026-10-23T19:56:27.519Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IUnavailableDayService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IUnavailableDayService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IUnavailableDayService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IUnavailableDayService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IUnavailableDayService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "ISliderService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\ISliderService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\ISliderService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\ISliderService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\ISliderService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:53:59.722Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "IWorkingHourService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IWorkingHourService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IWorkingHourService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IWorkingHourService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IWorkingHourService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:53:35.357Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "IRestaurantService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IRestaurantService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IRestaurantService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IRestaurantService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IRestaurantService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:53:00.743Z",
+              "WhenOpened": "2026-10-23T19:57:25.875Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "IAppUserService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IAppUserService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IAppUserService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IAppUserService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IAppUserService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Title": "UpdateRestaurantStatusDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\RestaurantDtos\\UpdateRestaurantStatusDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\RestaurantDtos\\UpdateRestaurantStatusDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\RestaurantDtos\\UpdateRestaurantStatusDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\RestaurantDtos\\UpdateRestaurantStatusDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:52:34.893Z",
+              "WhenOpened": "2026-10-23T20:11:46.645Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "IProfileService.cs",
-              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IProfileService.cs",
-              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IProfileService.cs",
-              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IProfileService.cs*",
-              "RelativeToolTip": "Leia.Application\\Interfaces\\IProfileService.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAhAAAAAAAAAA==",
+              "Title": "ResponseSystemSettingDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SystemSettingDtos\\ResponseSystemSettingDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\SystemSettingDtos\\ResponseSystemSettingDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SystemSettingDtos\\ResponseSystemSettingDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\SystemSettingDtos\\ResponseSystemSettingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-23T19:51:58.702Z",
+              "WhenOpened": "2026-10-23T20:11:08.623Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "UpdateSystemSettingDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SystemSettingDtos\\UpdateSystemSettingDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\SystemSettingDtos\\UpdateSystemSettingDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SystemSettingDtos\\UpdateSystemSettingDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\SystemSettingDtos\\UpdateSystemSettingDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:10:54.188Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ResponseSliderDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SliderDtos\\ResponseSliderDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\SliderDtos\\ResponseSliderDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SliderDtos\\ResponseSliderDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\SliderDtos\\ResponseSliderDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:09:40.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "UpdateSliderDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SliderDtos\\UpdateSliderDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\SliderDtos\\UpdateSliderDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SliderDtos\\UpdateSliderDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\SliderDtos\\UpdateSliderDto.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAmwCMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:09:24.395Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 17,
+              "Title": "CreateSliderDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SliderDtos\\CreateSliderDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\SliderDtos\\CreateSliderDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\SliderDtos\\CreateSliderDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\SliderDtos\\CreateSliderDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAmwCIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:09:04.445Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ResponseNotificationDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\NotificationDtos\\ResponseNotificationDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\NotificationDtos\\ResponseNotificationDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\NotificationDtos\\ResponseNotificationDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\NotificationDtos\\ResponseNotificationDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:08:35.775Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "ResponseReviewDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ReviewDtos\\ResponseReviewDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\ReviewDtos\\ResponseReviewDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ReviewDtos\\ResponseReviewDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\ReviewDtos\\ResponseReviewDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:08:10.078Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "CreateReviewDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ReviewDtos\\CreateReviewDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\ReviewDtos\\CreateReviewDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\ReviewDtos\\CreateReviewDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\ReviewDtos\\CreateReviewDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:07:55.488Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "OrderFilterDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\OrderFilterDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\OrderDtos\\OrderFilterDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\OrderFilterDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\OrderDtos\\OrderFilterDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:07:28.327Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ResponseOrderDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\ResponseOrderDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\OrderDtos\\ResponseOrderDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\ResponseOrderDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\OrderDtos\\ResponseOrderDto.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA6wCsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:07:08.483Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "CancelOrderDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\CancelOrderDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\OrderDtos\\CancelOrderDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\CancelOrderDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\OrderDtos\\CancelOrderDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:06:55.049Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "UpdateOrderStatusDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\UpdateOrderStatusDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\OrderDtos\\UpdateOrderStatusDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\UpdateOrderStatusDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\OrderDtos\\UpdateOrderStatusDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:05:58.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "CreateOrderDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\CreateOrderDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\OrderDtos\\CreateOrderDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\OrderDtos\\CreateOrderDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\OrderDtos\\CreateOrderDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:05:44.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "using FluentValidation;.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuItemDtos\\using FluentValidation;.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\MenuItemDtos\\using FluentValidation;.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuItemDtos\\using FluentValidation;.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\MenuItemDtos\\using FluentValidation;.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:05:19.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "UpdateMenuItemDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuItemDtos\\UpdateMenuItemDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\MenuItemDtos\\UpdateMenuItemDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuItemDtos\\UpdateMenuItemDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\MenuItemDtos\\UpdateMenuItemDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:04:58.778Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "CreateMenuItemDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuItemDtos\\CreateMenuItemDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\MenuItemDtos\\CreateMenuItemDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuItemDtos\\CreateMenuItemDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\MenuItemDtos\\CreateMenuItemDto.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAmwCQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:04:37.67Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "ResponseMenuCategoryDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuCategoryDtos\\ResponseMenuCategoryDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\MenuCategoryDtos\\ResponseMenuCategoryDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuCategoryDtos\\ResponseMenuCategoryDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\MenuCategoryDtos\\ResponseMenuCategoryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:03:46.504Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "UpdateMenuCategoryDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuCategoryDtos\\UpdateMenuCategoryDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\MenuCategoryDtos\\UpdateMenuCategoryDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuCategoryDtos\\UpdateMenuCategoryDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\MenuCategoryDtos\\UpdateMenuCategoryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:02:04.018Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "CreateMenuCategoryDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuCategoryDtos\\CreateMenuCategoryDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\MenuCategoryDtos\\CreateMenuCategoryDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\MenuCategoryDtos\\CreateMenuCategoryDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\MenuCategoryDtos\\CreateMenuCategoryDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:01:45.227Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ResponseUnavailableDayDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UnavailableDayDtos\\ResponseUnavailableDayDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UnavailableDayDtos\\ResponseUnavailableDayDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UnavailableDayDtos\\ResponseUnavailableDayDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\UnavailableDayDtos\\ResponseUnavailableDayDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:01:21.458Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "CreateUnavailableDayDto.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UnavailableDayDtos\\CreateUnavailableDayDto.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UnavailableDayDtos\\CreateUnavailableDayDto.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UnavailableDayDtos\\CreateUnavailableDayDto.cs",
+              "RelativeToolTip": "Leia.Application\\Dtos\\UnavailableDayDtos\\CreateUnavailableDayDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T20:00:54.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "IFileUploadService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IFileUploadService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IFileUploadService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IFileUploadService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IFileUploadService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T19:58:50.702Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "IEmailService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IEmailService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IEmailService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IEmailService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IEmailService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T19:58:26.985Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "IWorkingHourService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IWorkingHourService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IWorkingHourService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IWorkingHourService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IWorkingHourService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T19:53:35.357Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 37,
+              "Title": "IRestaurantService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IRestaurantService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IRestaurantService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IRestaurantService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IRestaurantService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T19:53:00.743Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 38,
+              "Title": "IAppUserService.cs",
+              "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IAppUserService.cs",
+              "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IAppUserService.cs",
+              "ToolTip": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IAppUserService.cs",
+              "RelativeToolTip": "Leia.Application\\Interfaces\\IAppUserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-23T19:52:34.893Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 42,
               "Title": "ResponseWorkingHourDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\WorkingHourDtos\\ResponseWorkingHourDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\WorkingHourDtos\\ResponseWorkingHourDto.cs",
@@ -536,7 +957,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 43,
               "Title": "UpdateWorkingHourDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\WorkingHourDtos\\UpdateWorkingHourDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\WorkingHourDtos\\UpdateWorkingHourDto.cs",
@@ -548,7 +969,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 44,
               "Title": "CreateWorkingHourDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\WorkingHourDtos\\CreateWorkingHourDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\WorkingHourDtos\\CreateWorkingHourDto.cs",
@@ -560,7 +981,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 40,
               "Title": "ServicesRegistration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\ServicesRegistration.cs",
               "RelativeDocumentMoniker": "LeiaRestaurant\\ServicesRegistration.cs",
@@ -572,7 +993,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 41,
               "Title": "Leia.Api.csproj",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\Leia.Api.csproj",
               "RelativeDocumentMoniker": "LeiaRestaurant\\Leia.Api.csproj",
@@ -584,7 +1005,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 39,
               "Title": "IJwtService.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IJwtService.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IJwtService.cs",
@@ -592,12 +1013,11 @@
               "RelativeToolTip": "Leia.Application\\Interfaces\\IJwtService.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAABfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-10-22T18:52:04.458Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-10-22T18:52:04.458Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 45,
               "Title": "RestaurantFilterDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\RestaurantDtos\\RestaurantFilterDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\RestaurantDtos\\RestaurantFilterDto.cs",
@@ -609,7 +1029,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 46,
               "Title": "RestaurantListDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\RestaurantDtos\\RestaurantListDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\RestaurantDtos\\RestaurantListDto.cs",
@@ -621,7 +1041,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 47,
               "Title": "ResponseRestaurantDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\RestaurantDtos\\ResponseRestaurantDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\RestaurantDtos\\ResponseRestaurantDto.cs",
@@ -633,7 +1053,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 48,
               "Title": "UpdateRestaurantDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\RestaurantDtos\\UpdateRestaurantDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\RestaurantDtos\\UpdateRestaurantDto.cs",
@@ -645,7 +1065,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 49,
               "Title": "CreateRestaurantDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\RestaurantDtos\\CreateRestaurantDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\RestaurantDtos\\CreateRestaurantDto.cs",
@@ -657,7 +1077,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 50,
               "Title": "ResponseUserDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\AppUserDtos\\ResponseUserDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\AppUserDtos\\ResponseUserDto.cs",
@@ -669,7 +1089,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 51,
               "Title": "UpdateUserDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\AppUserDtos\\UpdateUserDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\AppUserDtos\\UpdateUserDto.cs",
@@ -681,7 +1101,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 52,
               "Title": "CreateUserDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\AppUserDtos\\CreateUserDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\AppUserDtos\\CreateUserDto.cs",
@@ -693,7 +1113,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 53,
               "Title": "ResetPasswordDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UserDtos\\ResetPasswordDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UserDtos\\ResetPasswordDto.cs",
@@ -705,7 +1125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 54,
               "Title": "ForgotPasswordDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UserDtos\\ForgotPasswordDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UserDtos\\ForgotPasswordDto.cs",
@@ -717,7 +1137,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 55,
               "Title": "EmailConfirmDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UserDtos\\EmailConfirmDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UserDtos\\EmailConfirmDto.cs",
@@ -729,7 +1149,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 56,
               "Title": "Verify2FADto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UserDtos\\Verify2FADto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UserDtos\\Verify2FADto.cs",
@@ -741,7 +1161,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 57,
               "Title": "RefreshTokenDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UserDtos\\RefreshTokenDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UserDtos\\RefreshTokenDto.cs",
@@ -753,7 +1173,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 36,
+              "DocumentIndex": 61,
               "Title": "PaginationDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\Common\\PaginationDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\Common\\PaginationDto.cs",
@@ -765,7 +1185,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 37,
+              "DocumentIndex": 62,
               "Title": "PagedResultDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\Common\\PagedResultDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\Common\\PagedResultDto.cs",
@@ -777,7 +1197,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 33,
+              "DocumentIndex": 58,
               "Title": "RegisterDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UserDtos\\RegisterDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UserDtos\\RegisterDto.cs",
@@ -789,7 +1209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 34,
+              "DocumentIndex": 59,
               "Title": "LoginDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UserDtos\\LoginDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UserDtos\\LoginDto.cs",
@@ -801,7 +1221,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 35,
+              "DocumentIndex": 60,
               "Title": "AuthResponseDto.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Dtos\\UserDtos\\AuthResponseDto.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Dtos\\UserDtos\\AuthResponseDto.cs",
@@ -813,7 +1233,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 38,
+              "DocumentIndex": 63,
               "Title": "IAccountService.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Interfaces\\IAccountService.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Interfaces\\IAccountService.cs",
@@ -825,7 +1245,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 39,
+              "DocumentIndex": 64,
               "Title": "ResponseModelHelper.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Helpers\\ResponseModelHelper.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Helpers\\ResponseModelHelper.cs",
@@ -837,7 +1257,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 40,
+              "DocumentIndex": 65,
               "Title": "ResponseModel.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Models\\ResponseModel.cs",
               "RelativeDocumentMoniker": "Leia.Application\\Models\\ResponseModel.cs",
@@ -849,7 +1269,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 41,
+              "DocumentIndex": 66,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\Program.cs",
               "RelativeDocumentMoniker": "LeiaRestaurant\\Program.cs",
@@ -861,7 +1281,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 42,
+              "DocumentIndex": 67,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\appsettings.json",
               "RelativeDocumentMoniker": "LeiaRestaurant\\appsettings.json",
@@ -873,7 +1293,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 43,
+              "DocumentIndex": 68,
               "Title": "launchSettings.json",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\LeiaRestaurant\\Properties\\launchSettings.json",
               "RelativeDocumentMoniker": "LeiaRestaurant\\Properties\\launchSettings.json",
@@ -885,7 +1305,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 44,
+              "DocumentIndex": 69,
               "Title": "OrderConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\OrderConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\OrderConfiguration.cs",
@@ -897,7 +1317,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 46,
+              "DocumentIndex": 71,
               "Title": "MenuItemConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\MenuItemConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\MenuItemConfiguration.cs",
@@ -909,7 +1329,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 45,
+              "DocumentIndex": 70,
               "Title": "NotificationConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\NotificationConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\NotificationConfiguration.cs",
@@ -921,7 +1341,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 47,
+              "DocumentIndex": 72,
               "Title": "MenuCategoryConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\MenuCategoryConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\MenuCategoryConfiguration.cs",
@@ -933,7 +1353,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 48,
+              "DocumentIndex": 73,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\AppDbContext.cs",
@@ -945,7 +1365,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 49,
+              "DocumentIndex": 74,
               "Title": "WorkingHourConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\WorkingHourConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\WorkingHourConfiguration.cs",
@@ -957,7 +1377,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 50,
+              "DocumentIndex": 75,
               "Title": "UnavailableDayConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\UnavailableDayConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\UnavailableDayConfiguration.cs",
@@ -969,7 +1389,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 51,
+              "DocumentIndex": 76,
               "Title": "SystemSettingConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\SystemSettingConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\SystemSettingConfiguration.cs",
@@ -981,7 +1401,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 52,
+              "DocumentIndex": 77,
               "Title": "SliderConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\SliderConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\SliderConfiguration.cs",
@@ -993,7 +1413,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 53,
+              "DocumentIndex": 78,
               "Title": "ReviewConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\ReviewConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\ReviewConfiguration.cs",
@@ -1005,7 +1425,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 54,
+              "DocumentIndex": 79,
               "Title": "RestaurantConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\RestaurantConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\RestaurantConfiguration.cs",
@@ -1017,7 +1437,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 55,
+              "DocumentIndex": 80,
               "Title": "OrderItemConfiguration.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Data\\Configurations\\OrderItemConfiguration.cs",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Data\\Configurations\\OrderItemConfiguration.cs",
@@ -1029,7 +1449,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 59,
+              "DocumentIndex": 84,
               "Title": "AuditableEntity.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Common\\AuditableEntity.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Common\\AuditableEntity.cs",
@@ -1041,7 +1461,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 57,
+              "DocumentIndex": 82,
               "Title": "Notification.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\Notification.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\Notification.cs",
@@ -1053,7 +1473,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 56,
+              "DocumentIndex": 81,
               "Title": "Review.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\Review.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\Review.cs",
@@ -1065,7 +1485,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 61,
+              "DocumentIndex": 86,
               "Title": "Slider.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\Slider.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\Slider.cs",
@@ -1077,7 +1497,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 64,
+              "DocumentIndex": 89,
               "Title": "SystemSetting.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\SystemSetting.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\SystemSetting.cs",
@@ -1089,7 +1509,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 63,
+              "DocumentIndex": 88,
               "Title": "UnavailableDay.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\UnavailableDay.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\UnavailableDay.cs",
@@ -1101,7 +1521,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 60,
+              "DocumentIndex": 85,
               "Title": "MenuItem.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\MenuItem.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\MenuItem.cs",
@@ -1113,7 +1533,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 58,
+              "DocumentIndex": 83,
               "Title": "BaseEntity.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Common\\BaseEntity.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Common\\BaseEntity.cs",
@@ -1125,7 +1545,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 65,
+              "DocumentIndex": 90,
               "Title": "OrderItem.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\OrderItem.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\OrderItem.cs",
@@ -1137,7 +1557,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 66,
+              "DocumentIndex": 91,
               "Title": "Restaurant.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\Restaurant.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\Restaurant.cs",
@@ -1149,7 +1569,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 67,
+              "DocumentIndex": 92,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\Order.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\Order.cs",
@@ -1161,7 +1581,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 62,
+              "DocumentIndex": 87,
               "Title": "WorkingHour.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\WorkingHour.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\WorkingHour.cs",
@@ -1173,7 +1593,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 68,
+              "DocumentIndex": 93,
               "Title": "MenuCategory.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\MenuCategory.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\MenuCategory.cs",
@@ -1185,7 +1605,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 69,
+              "DocumentIndex": 94,
               "Title": "ApplicationUser.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Entities\\ApplicationUser.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Entities\\ApplicationUser.cs",
@@ -1197,7 +1617,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 70,
+              "DocumentIndex": 95,
               "Title": "Leia.Infrastructure.csproj",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Infrastructure\\Leia.Infrastructure.csproj",
               "RelativeDocumentMoniker": "Leia.Infrastructure\\Leia.Infrastructure.csproj",
@@ -1209,7 +1629,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 71,
+              "DocumentIndex": 96,
               "Title": "Leia.Application.csproj",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Application\\Leia.Application.csproj",
               "RelativeDocumentMoniker": "Leia.Application\\Leia.Application.csproj",
@@ -1221,7 +1641,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 72,
+              "DocumentIndex": 97,
               "Title": "NotificationType.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Enums\\NotificationType.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Enums\\NotificationType.cs",
@@ -1233,7 +1653,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 73,
+              "DocumentIndex": 98,
               "Title": "PaymentMethod.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Enums\\PaymentMethod.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Enums\\PaymentMethod.cs",
@@ -1245,7 +1665,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 74,
+              "DocumentIndex": 99,
               "Title": "OrderStatus.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Enums\\OrderStatus.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Enums\\OrderStatus.cs",
@@ -1257,7 +1677,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 75,
+              "DocumentIndex": 100,
               "Title": "OrderType.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Enums\\OrderType.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Enums\\OrderType.cs",
@@ -1269,7 +1689,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 76,
+              "DocumentIndex": 101,
               "Title": "RestaurantStatus.cs",
               "DocumentMoniker": "C:\\Users\\fmeli\\OneDrive\\Desktop\\Leia\\LeiaRestaurant\\Leia.Domain\\Enums\\RestaurantStatus.cs",
               "RelativeDocumentMoniker": "Leia.Domain\\Enums\\RestaurantStatus.cs",

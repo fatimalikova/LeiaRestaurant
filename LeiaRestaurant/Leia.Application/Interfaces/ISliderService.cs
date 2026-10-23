@@ -1,4 +1,5 @@
-﻿using Leia.Application.Models;
+﻿using Leia.Application.Dtos.SliderDtos;
+using Leia.Application.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
