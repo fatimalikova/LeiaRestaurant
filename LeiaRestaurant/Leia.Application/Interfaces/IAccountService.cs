@@ -1,14 +1,16 @@
 ﻿using Leia.Application.Dtos.AccountDtos;
-using Leia.Application.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using Leia.Application.Dtos.UserDtos;
 
 namespace Leia.Application.Interfaces
 {
     public interface IAccountService
     {
-        Task<ResponseModel<AuthResponseDto>> RegisterAsync(RegisterDto dto);
-        Task<ResponseModel<AuthResponseDto>> LoginAsync(LoginDto dto);
+        Task<AuthResponseDto> RegisterAsync(RegisterDto dto);
+        Task<AuthResponseDto> LoginAsync(LoginDto dto);
+        Task<AuthResponseDto> Verify2FAAsync(Verify2FADto dto);
+        Task<AuthResponseDto> RefreshTokenAsync(RefreshTokenDto dto);
+        Task ConfirmEmailAsync(EmailConfirmDto dto);
+        Task ForgotPasswordAsync(ForgotPasswordDto dto);
+        Task ResetPasswordAsync(ResetPasswordDto dto);
     }
 }

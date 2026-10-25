@@ -1,16 +1,19 @@
 ﻿using FluentValidation;
+using FluentValidation.AspNetCore;
 using Leia.Application.Dtos.AccountDtos;
 using Leia.Application.Helpers;
+using Leia.Application.Interfaces;
 using Leia.Domain.Entities;
 using Leia.Infrastructure.Data;
+using Leia.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 using System.Text;
+
 namespace Leia.Api
 {
     public static class ServicesRegistration
@@ -20,6 +23,7 @@ namespace Leia.Api
             services.AddControllers();
 
             services.AddValidatorsFromAssemblyContaining<RegisterValidator>();
+            services.AddFluentValidationAutoValidation();
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
@@ -81,6 +85,7 @@ namespace Leia.Api
             services.AddIdentity<ApplicationUser, IdentityRole<Guid>>(options =>
             {
                 options.Password.RequiredLength = 8;
+                options.Password.RequireNonAlphanumeric = false;
                 options.User.RequireUniqueEmail = true;
             })
             .AddEntityFrameworkStores<AppDbContext>()
@@ -123,7 +128,22 @@ namespace Leia.Api
                 };
             });
 
-           
+            services.AddScoped<IJwtService, JwtService>();
+            services.AddScoped<IEmailService, EmailService>();
+            services.AddHttpClient<IFileUploadService, FileUploadService>();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<IProfileService, ProfileService>();
+            services.AddScoped<IAppUserService, AppUserService>();
+            services.AddScoped<IRestaurantService, RestaurantService>();
+            services.AddScoped<IWorkingHourService, WorkingHourService>();
+            services.AddScoped<IUnavailableDayService, UnavailableDayService>();
+            services.AddScoped<IMenuCategoryService, MenuCategoryService>();
+            services.AddScoped<IMenuItemService, MenuItemService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IReviewService, ReviewService>();
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<ISliderService, SliderService>();
+            services.AddScoped<ISystemSettingService, SystemSettingService>();
 
             return services;
         }

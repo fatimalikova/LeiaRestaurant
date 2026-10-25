@@ -24,8 +24,4 @@
     <ProjectReference Include="..\Leia.Application\Leia.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
-
 </Project>

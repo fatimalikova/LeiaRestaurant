@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Leia.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fcbd426f57c9fec6d55fdccff9be341b57673880")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b2f88df039aae87a243cea09022e90a6c8250272")]
 [assembly: System.Reflection.AssemblyProductAttribute("Leia.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Leia.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
