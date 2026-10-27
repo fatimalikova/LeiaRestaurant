@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.AppUserDtos;
+﻿using AutoMapper;
+using Leia.Application.Dtos.AppUserDtos;
 using Leia.Application.Dtos.Common;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
@@ -10,7 +11,8 @@ namespace Leia.Infrastructure.Services
 {
     public class AppUserService(
         UserManager<ApplicationUser> userManager,
-        RoleManager<IdentityRole<Guid>> roleManager) : IAppUserService
+        RoleManager<IdentityRole<Guid>> roleManager,
+        IMapper mapper) : IAppUserService
     {
         public async Task<PagedResultDto<ResponseUserDto>> GetAllAsync(PaginationDto dto)
         {
@@ -25,7 +27,7 @@ namespace Leia.Infrastructure.Services
 
             var items = new List<ResponseUserDto>();
             foreach (var u in users)
-                items.Add(Map(u, await userManager.GetRolesAsync(u)));
+                items.Add(await ToDtoAsync(u));
 
             return new PagedResultDto<ResponseUserDto>
             {
@@ -38,8 +40,7 @@ namespace Leia.Infrastructure.Services
 
         public async Task<ResponseUserDto> GetByIdAsync(Guid id)
         {
-            var user = await GetUserAsync(id);
-            return Map(user, await userManager.GetRolesAsync(user));
+            return await ToDtoAsync(await GetUserAsync(id));
         }
 
         public async Task<ResponseUserDto> CreateAsync(CreateUserDto dto)
@@ -47,14 +48,7 @@ namespace Leia.Infrastructure.Services
             if (await userManager.FindByEmailAsync(dto.Email) != null)
                 throw new ConflictException("This email is already registered.");
 
-            var user = new ApplicationUser
-            {
-                FullName = dto.FullName,
-                Email = dto.Email,
-                UserName = dto.Email,
-                PhoneNumber = dto.PhoneNumber,
-                EmailConfirmed = true
-            };
+            var user = mapper.Map<ApplicationUser>(dto);
 
             var result = await userManager.CreateAsync(user, dto.Password);
             if (!result.Succeeded)
@@ -65,22 +59,19 @@ namespace Leia.Infrastructure.Services
 
             await userManager.AddToRoleAsync(user, dto.Role);
 
-            return Map(user, await userManager.GetRolesAsync(user));
+            return await ToDtoAsync(user);
         }
 
         public async Task<ResponseUserDto> UpdateAsync(Guid id, UpdateUserDto dto)
         {
             var user = await GetUserAsync(id);
-
-            user.FullName = dto.FullName;
-            user.PhoneNumber = dto.PhoneNumber;
-            user.IsActive = dto.IsActive;
+            mapper.Map(dto, user);
 
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)
                 throw new BadRequestException(string.Join(" ", result.Errors.Select(e => e.Description)));
 
-            return Map(user, await userManager.GetRolesAsync(user));
+            return await ToDtoAsync(user);
         }
 
         private async Task<ApplicationUser> GetUserAsync(Guid id)
@@ -89,16 +80,11 @@ namespace Leia.Infrastructure.Services
                 ?? throw new NotFoundException("User not found.");
         }
 
-        private static ResponseUserDto Map(ApplicationUser u, IList<string> roles) => new()
+        private async Task<ResponseUserDto> ToDtoAsync(ApplicationUser user)
         {
-            Id = u.Id,
-            FullName = u.FullName,
-            Email = u.Email ?? string.Empty,
-            PhoneNumber = u.PhoneNumber,
-            ImageUrl = u.ImageUrl,
-            IsActive = u.IsActive,
-            CreatedAt = u.CreatedAt,
-            Roles = roles
-        };
+            var dto = mapper.Map<ResponseUserDto>(user);
+            dto.Roles = await userManager.GetRolesAsync(user);
+            return dto;
+        }
     }
 }

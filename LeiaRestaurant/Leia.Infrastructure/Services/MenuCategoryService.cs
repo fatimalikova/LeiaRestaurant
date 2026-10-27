@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.MenuCategoryDtos;
+﻿using AutoMapper;
+using Leia.Application.Dtos.MenuCategoryDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
 using Leia.Domain.Entities;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leia.Infrastructure.Services
 {
-    public class MenuCategoryService(AppDbContext db) : IMenuCategoryService
+    public class MenuCategoryService(AppDbContext db, IMapper mapper) : IMenuCategoryService
     {
         public async Task<List<ResponseMenuCategoryDto>> GetByRestaurantAsync(Guid restaurantId)
         {
@@ -17,7 +18,7 @@ namespace Leia.Infrastructure.Services
                 .OrderBy(c => c.SortOrder)
                 .ToListAsync();
 
-            return categories.Select(Map).ToList();
+            return categories.Select(ToDto).ToList();
         }
 
         public async Task<List<ResponseMenuCategoryDto>> GetMyAsync(Guid ownerId)
@@ -30,23 +31,19 @@ namespace Leia.Infrastructure.Services
                 .OrderBy(c => c.SortOrder)
                 .ToListAsync();
 
-            return categories.Select(Map).ToList();
+            return categories.Select(ToDto).ToList();
         }
 
         public async Task<ResponseMenuCategoryDto> CreateAsync(Guid ownerId, CreateMenuCategoryDto dto)
         {
             var restaurant = await GetRestaurantAsync(ownerId);
 
-            var category = new MenuCategory
-            {
-                RestaurantId = restaurant.Id,
-                Name = dto.Name,
-                SortOrder = dto.SortOrder
-            };
+            var category = mapper.Map<MenuCategory>(dto);
+            category.RestaurantId = restaurant.Id;
 
             db.MenuCategories.Add(category);
             await db.SaveChangesAsync();
-            return Map(category);
+            return ToDto(category);
         }
 
         public async Task<ResponseMenuCategoryDto> UpdateAsync(Guid ownerId, Guid id, UpdateMenuCategoryDto dto)
@@ -58,13 +55,11 @@ namespace Leia.Infrastructure.Services
                 .FirstOrDefaultAsync(c => c.Id == id && c.RestaurantId == restaurant.Id)
                 ?? throw new NotFoundException("Category not found.");
 
-            category.Name = dto.Name;
-            category.SortOrder = dto.SortOrder;
-            category.IsActive = dto.IsActive;
+            mapper.Map(dto, category);
             category.UpdatedAt = DateTime.UtcNow;
 
             await db.SaveChangesAsync();
-            return Map(category);
+            return ToDto(category);
         }
 
         public async Task DeleteAsync(Guid ownerId, Guid id)
@@ -89,14 +84,12 @@ namespace Leia.Infrastructure.Services
                 ?? throw new NotFoundException("Restaurant profile not found.");
         }
 
-        private static ResponseMenuCategoryDto Map(MenuCategory c) => new()
+        private ResponseMenuCategoryDto ToDto(MenuCategory category)
         {
-            Id = c.Id,
-            RestaurantId = c.RestaurantId,
-            Name = c.Name,
-            SortOrder = c.SortOrder,
-            IsActive = c.IsActive,
-            Items = c.MenuItems.Select(i => MenuMapper.ToDto(i, c.Name)).ToList()
-        };
+            var dto = mapper.Map<ResponseMenuCategoryDto>(category);
+            foreach (var item in dto.Items)
+                item.CategoryName = dto.Name;
+            return dto;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.UnavailableDayDtos;
+﻿using AutoMapper;
+using Leia.Application.Dtos.UnavailableDayDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Helpers;
 using Leia.Application.Interfaces;
@@ -8,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leia.Infrastructure.Services
 {
-    public class UnavailableDayService(AppDbContext db) : IUnavailableDayService
+    public class UnavailableDayService(AppDbContext db, IMapper mapper) : IUnavailableDayService
     {
         public async Task<List<ResponseUnavailableDayDto>> GetByRestaurantAsync(Guid restaurantId)
         {
@@ -19,7 +20,7 @@ namespace Leia.Infrastructure.Services
                 .OrderBy(u => u.Date)
                 .ToListAsync();
 
-            return days.Select(Map).ToList();
+            return mapper.Map<List<ResponseUnavailableDayDto>>(days);
         }
 
         public async Task<ResponseUnavailableDayDto> CreateAsync(Guid ownerId, CreateUnavailableDayDto dto)
@@ -30,16 +31,13 @@ namespace Leia.Infrastructure.Services
             if (await db.UnavailableDays.AnyAsync(u => u.RestaurantId == restaurant.Id && u.Date == date))
                 throw new ConflictException("This day is already marked as unavailable.");
 
-            var day = new UnavailableDay
-            {
-                RestaurantId = restaurant.Id,
-                Date = date,
-                Reason = dto.Reason
-            };
+            var day = mapper.Map<UnavailableDay>(dto);
+            day.RestaurantId = restaurant.Id;
+            day.Date = date;
 
             db.UnavailableDays.Add(day);
             await db.SaveChangesAsync();
-            return Map(day);
+            return mapper.Map<ResponseUnavailableDayDto>(day);
         }
 
         public async Task DeleteAsync(Guid ownerId, Guid id)
@@ -58,12 +56,5 @@ namespace Leia.Infrastructure.Services
             return await db.Restaurants.FirstOrDefaultAsync(r => r.OwnerId == ownerId)
                 ?? throw new NotFoundException("Restaurant profile not found.");
         }
-
-        private static ResponseUnavailableDayDto Map(UnavailableDay u) => new()
-        {
-            Id = u.Id,
-            Date = u.Date,
-            Reason = u.Reason
-        };
     }
 }

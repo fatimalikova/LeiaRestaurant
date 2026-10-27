@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.SliderDtos;
+﻿using AutoMapper;
+using Leia.Application.Dtos.SliderDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
 using Leia.Domain.Entities;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leia.Infrastructure.Services
 {
-    public class SliderService(AppDbContext db) : ISliderService
+    public class SliderService(AppDbContext db, IMapper mapper) : ISliderService
     {
         public async Task<List<ResponseSliderDto>> GetActiveAsync()
         {
@@ -15,29 +16,26 @@ namespace Leia.Infrastructure.Services
                 .Where(s => s.IsActive)
                 .OrderBy(s => s.SortOrder)
                 .ToListAsync();
-            return sliders.Select(Map).ToList();
+
+            return mapper.Map<List<ResponseSliderDto>>(sliders);
         }
 
         public async Task<List<ResponseSliderDto>> GetAllAsync()
         {
-            var sliders = await db.Sliders.AsNoTracking().OrderBy(s => s.SortOrder).ToListAsync();
-            return sliders.Select(Map).ToList();
+            var sliders = await db.Sliders.AsNoTracking()
+                .OrderBy(s => s.SortOrder)
+                .ToListAsync();
+
+            return mapper.Map<List<ResponseSliderDto>>(sliders);
         }
 
         public async Task<ResponseSliderDto> CreateAsync(CreateSliderDto dto)
         {
-            var slider = new Slider
-            {
-                ImageUrl = dto.ImageUrl,
-                Title = dto.Title,
-                Subtitle = dto.Subtitle,
-                Link = dto.Link,
-                SortOrder = dto.SortOrder
-            };
+            var slider = mapper.Map<Slider>(dto);
 
             db.Sliders.Add(slider);
             await db.SaveChangesAsync();
-            return Map(slider);
+            return mapper.Map<ResponseSliderDto>(slider);
         }
 
         public async Task<ResponseSliderDto> UpdateAsync(Guid id, UpdateSliderDto dto)
@@ -45,16 +43,11 @@ namespace Leia.Infrastructure.Services
             var slider = await db.Sliders.FirstOrDefaultAsync(s => s.Id == id)
                 ?? throw new NotFoundException("Slider not found.");
 
-            slider.ImageUrl = dto.ImageUrl;
-            slider.Title = dto.Title;
-            slider.Subtitle = dto.Subtitle;
-            slider.Link = dto.Link;
-            slider.SortOrder = dto.SortOrder;
-            slider.IsActive = dto.IsActive;
+            mapper.Map(dto, slider);
             slider.UpdatedAt = DateTime.UtcNow;
 
             await db.SaveChangesAsync();
-            return Map(slider);
+            return mapper.Map<ResponseSliderDto>(slider);
         }
 
         public async Task DeleteAsync(Guid id)
@@ -65,16 +58,5 @@ namespace Leia.Infrastructure.Services
             db.Sliders.Remove(slider);
             await db.SaveChangesAsync();
         }
-
-        private static ResponseSliderDto Map(Slider s) => new()
-        {
-            Id = s.Id,
-            ImageUrl = s.ImageUrl,
-            Title = s.Title,
-            Subtitle = s.Subtitle,
-            Link = s.Link,
-            SortOrder = s.SortOrder,
-            IsActive = s.IsActive
-        };
     }
 }

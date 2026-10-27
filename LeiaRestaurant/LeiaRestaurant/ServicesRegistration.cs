@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Leia.Application.Dtos.AccountDtos;
+using Leia.Application.Dtos.UserDtos;
 using Leia.Application.Helpers;
 using Leia.Application.Interfaces;
+using Leia.Application.Profiles;
 using Leia.Domain.Entities;
 using Leia.Infrastructure.Data;
 using Leia.Infrastructure.Services;
@@ -127,6 +129,8 @@ namespace Leia.Api
                     }
                 };
             });
+
+            services.AddAutoMapper(typeof(MapperProfile).Assembly);
 
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IEmailService, EmailService>();

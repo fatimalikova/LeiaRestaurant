@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.ProfileDtos;
+﻿using AutoMapper;
+using Leia.Application.Dtos.ProfileDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
 using Leia.Domain.Entities;
@@ -6,26 +7,24 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Leia.Infrastructure.Services
 {
-    public class ProfileService(UserManager<ApplicationUser> userManager) : IProfileService
+    public class ProfileService(UserManager<ApplicationUser> userManager, IMapper mapper) : IProfileService
     {
         public async Task<ProfileResponseDto> GetAsync(Guid userId)
         {
-            return Map(await GetUserAsync(userId));
+            var user = await GetUserAsync(userId);
+            return mapper.Map<ProfileResponseDto>(user);
         }
 
         public async Task<ProfileResponseDto> UpdateAsync(Guid userId, UpdateProfileDto dto)
         {
             var user = await GetUserAsync(userId);
-
-            user.FullName = dto.FullName;
-            user.PhoneNumber = dto.PhoneNumber;
-            user.ImageUrl = dto.ImageUrl;
+            mapper.Map(dto, user);
 
             var result = await userManager.UpdateAsync(user);
             if (!result.Succeeded)
                 throw new BadRequestException(string.Join(" ", result.Errors.Select(e => e.Description)));
 
-            return Map(user);
+            return mapper.Map<ProfileResponseDto>(user);
         }
 
         public async Task ChangePasswordAsync(Guid userId, ChangePasswordDto dto)
@@ -42,15 +41,5 @@ namespace Leia.Infrastructure.Services
             return await userManager.FindByIdAsync(userId.ToString())
                 ?? throw new NotFoundException("User not found.");
         }
-
-        private static ProfileResponseDto Map(ApplicationUser u) => new()
-        {
-            Id = u.Id,
-            FullName = u.FullName,
-            Email = u.Email ?? string.Empty,
-            PhoneNumber = u.PhoneNumber,
-            ImageUrl = u.ImageUrl,
-            CreatedAt = u.CreatedAt
-        };
     }
 }

@@ -1,9 +1,6 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Leia.Application.Dtos.AccountDtos
+namespace Leia.Application.Dtos.UserDtos
 {
     public class RegisterDto
     {
@@ -11,7 +8,6 @@ namespace Leia.Application.Dtos.AccountDtos
         public string Email { get; set; } = string.Empty;
         public string? PhoneNumber { get; set; }
         public string Password { get; set; } = string.Empty;
-        public string Role { get; set; } = "Customer";
     }
 
     public class RegisterValidator : AbstractValidator<RegisterDto>
@@ -33,10 +29,6 @@ namespace Leia.Application.Dtos.AccountDtos
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required.")
                 .MinimumLength(8).WithMessage("Password must be at least 8 characters.");
-
-            RuleFor(x => x.Role)
-                .Must(r => r == "Customer" || r == "RestaurantOwner")
-                .WithMessage("Role must be Customer or RestaurantOwner.");
         }
     }
 }

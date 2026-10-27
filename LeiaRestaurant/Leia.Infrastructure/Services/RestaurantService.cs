@@ -1,6 +1,6 @@
-﻿using Leia.Application.Dtos.Common;
+﻿using AutoMapper;
+using Leia.Application.Dtos.Common;
 using Leia.Application.Dtos.RestaurantDtos;
-using Leia.Application.Dtos.WorkingHourDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Helpers;
 using Leia.Application.Interfaces;
@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leia.Infrastructure.Services
 {
-    public class RestaurantService(AppDbContext db, INotificationService notificationService) : IRestaurantService
+    public class RestaurantService(AppDbContext db, INotificationService notificationService, IMapper mapper) : IRestaurantService
     {
         public async Task<PagedResultDto<RestaurantListDto>> GetAllAsync(RestaurantFilterDto filter)
         {
@@ -109,24 +109,9 @@ namespace Leia.Infrastructure.Services
             var setting = await db.SystemSettings.FirstOrDefaultAsync();
             var requireApproval = setting?.RequireRestaurantApproval ?? true;
 
-            var restaurant = new Restaurant
-            {
-                OwnerId = ownerId,
-                Name = dto.Name,
-                Description = dto.Description,
-                LogoUrl = dto.LogoUrl,
-                CoverUrl = dto.CoverUrl,
-                Address = dto.Address,
-                PhoneNumber = dto.PhoneNumber,
-                ContactEmail = dto.ContactEmail,
-                InstagramUrl = dto.InstagramUrl,
-                FacebookUrl = dto.FacebookUrl,
-                AcceptsDelivery = dto.AcceptsDelivery,
-                AcceptsPickup = dto.AcceptsPickup,
-                MinOrderAmount = dto.MinOrderAmount,
-                DeliveryFee = dto.DeliveryFee,
-                Status = requireApproval ? RestaurantStatus.Pending : RestaurantStatus.Approved
-            };
+            var restaurant = mapper.Map<Restaurant>(dto);
+            restaurant.OwnerId = ownerId;
+            restaurant.Status = requireApproval ? RestaurantStatus.Pending : RestaurantStatus.Approved;
 
             db.Restaurants.Add(restaurant);
             await db.SaveChangesAsync();
@@ -144,20 +129,7 @@ namespace Leia.Infrastructure.Services
             if (restaurant.Status == RestaurantStatus.Blocked)
                 throw new ForbiddenException("Your restaurant is blocked. Please contact support.");
 
-            restaurant.Name = dto.Name;
-            restaurant.Description = dto.Description;
-            restaurant.LogoUrl = dto.LogoUrl;
-            restaurant.CoverUrl = dto.CoverUrl;
-            restaurant.Address = dto.Address;
-            restaurant.PhoneNumber = dto.PhoneNumber;
-            restaurant.ContactEmail = dto.ContactEmail;
-            restaurant.InstagramUrl = dto.InstagramUrl;
-            restaurant.FacebookUrl = dto.FacebookUrl;
-            restaurant.IsActive = dto.IsActive;
-            restaurant.AcceptsDelivery = dto.AcceptsDelivery;
-            restaurant.AcceptsPickup = dto.AcceptsPickup;
-            restaurant.MinOrderAmount = dto.MinOrderAmount;
-            restaurant.DeliveryFee = dto.DeliveryFee;
+            mapper.Map(dto, restaurant);
             restaurant.UpdatedAt = DateTime.UtcNow;
 
             await db.SaveChangesAsync();
@@ -212,8 +184,6 @@ namespace Leia.Infrastructure.Services
             return await MapAsync(restaurant);
         }
 
-        
-
         private async Task<ResponseRestaurantDto> MapAsync(Restaurant restaurant)
         {
             return (await MapManyAsync(new List<Restaurant> { restaurant }))[0];
@@ -229,42 +199,20 @@ namespace Leia.Infrastructure.Services
                 .Select(g => new { Id = g.Key, Count = g.Count(), Avg = g.Average(x => (double)x.Rating) })
                 .ToDictionaryAsync(x => x.Id);
 
-            return restaurants.Select(r =>
-            {
-                stats.TryGetValue(r.Id, out var st);
+            var dtos = mapper.Map<List<ResponseRestaurantDto>>(restaurants);
 
-                return new ResponseRestaurantDto
+            foreach (var d in dtos)
+            {
+                if (stats.TryGetValue(d.Id, out var st))
                 {
-                    Id = r.Id,
-                    OwnerId = r.OwnerId,
-                    Name = r.Name,
-                    Description = r.Description,
-                    LogoUrl = r.LogoUrl,
-                    CoverUrl = r.CoverUrl,
-                    Address = r.Address,
-                    PhoneNumber = r.PhoneNumber,
-                    ContactEmail = r.ContactEmail,
-                    InstagramUrl = r.InstagramUrl,
-                    FacebookUrl = r.FacebookUrl,
-                    Status = r.Status,
-                    IsActive = r.IsActive,
-                    AcceptsDelivery = r.AcceptsDelivery,
-                    AcceptsPickup = r.AcceptsPickup,
-                    MinOrderAmount = r.MinOrderAmount,
-                    DeliveryFee = r.DeliveryFee,
-                    AverageRating = st == null ? 0 : Math.Round(st.Avg, 1),
-                    ReviewCount = st?.Count ?? 0,
-                    WorkingHours = r.WorkingHours
-                        .OrderBy(w => ((int)w.Day + 6) % 7)
-                        .Select(w => new ResponseWorkingHourDto
-                        {
-                            Id = w.Id,
-                            Day = w.Day,
-                            StartTime = w.StartTime,
-                            EndTime = w.EndTime
-                        }).ToList()
-                };
-            }).ToList();
+                    d.AverageRating = Math.Round(st.Avg, 1);
+                    d.ReviewCount = st.Count;
+                }
+
+                d.WorkingHours = d.WorkingHours.OrderBy(w => ((int)w.Day + 6) % 7).ToList();
+            }
+
+            return dtos;
         }
     }
-}   
+}

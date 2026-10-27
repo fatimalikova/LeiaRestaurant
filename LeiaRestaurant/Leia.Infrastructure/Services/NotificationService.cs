@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.Common;
+﻿using AutoMapper;
+using Leia.Application.Dtos.Common;
 using Leia.Application.Dtos.NotificationDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
@@ -9,32 +10,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leia.Infrastructure.Services
 {
-    public class NotificationService(AppDbContext db) : INotificationService
+    public class NotificationService(AppDbContext db, IMapper mapper) : INotificationService
     {
         public async Task<PagedResultDto<ResponseNotificationDto>> GetMyAsync(Guid userId, PaginationDto dto)
         {
             var query = db.Notifications.AsNoTracking().Where(n => n.UserId == userId);
 
             var total = await query.CountAsync();
-            var items = await query
+            var notifications = await query
                 .OrderByDescending(n => n.CreatedAt)
                 .Skip((dto.Page - 1) * dto.PageSize)
                 .Take(dto.PageSize)
-                .Select(n => new ResponseNotificationDto
-                {
-                    Id = n.Id,
-                    Title = n.Title,
-                    Message = n.Message,
-                    Type = n.Type,
-                    RelatedEntityId = n.RelatedEntityId,
-                    IsRead = n.IsRead,
-                    CreatedAt = n.CreatedAt
-                })
                 .ToListAsync();
 
             return new PagedResultDto<ResponseNotificationDto>
             {
-                Items = items,
+                Items = mapper.Map<List<ResponseNotificationDto>>(notifications),
                 TotalCount = total,
                 Page = dto.Page,
                 PageSize = dto.PageSize

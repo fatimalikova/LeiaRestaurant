@@ -1,4 +1,6 @@
-﻿using Leia.Application.Dtos.AccountDtos;
+﻿using Leia.Api.Extensions;
+using Leia.Application.Dtos.AccountDtos;
+using Leia.Application.Dtos.ProfileDtos;
 using Leia.Application.Dtos.UserDtos;
 using Leia.Application.Helpers;
 using Leia.Application.Interfaces;
@@ -8,63 +10,111 @@ using Microsoft.AspNetCore.Mvc;
 namespace Leia.Api.Controllers
 {
     [ApiController]
-    [Route("api/account")]
-    public class AccountController(IAccountService accountService) : ControllerBase
+    [Route("api/[controller]")]
+    public class AccountController(
+        IAccountService accountService,
+        IProfileService profileService) : ControllerBase
     {
-        [HttpPost("register")]
-        [AllowAnonymous]
-        public async Task<IActionResult> Register(RegisterDto dto)
+        [HttpPost("register/customer")]
+        public async Task<IActionResult> RegisterCustomer([FromBody] RegisterDto dto)
         {
-            var result = await accountService.RegisterAsync(dto);
-            return StatusCode(201, ResponseModelHelper.CreatedResult(result));
+            await accountService.RegisterAsync(dto, "Customer");
+            return Ok(ResponseModelHelper.SuccessResult("Registration successful. Check your email."));
         }
 
-        [HttpPost("login")]
-        [AllowAnonymous]
-        public async Task<IActionResult> Login(LoginDto dto)
+        [HttpPost("register/restaurant")]
+        public async Task<IActionResult> RegisterRestaurant([FromBody] RegisterDto dto)
         {
-            var result = await accountService.LoginAsync(dto);
+            await accountService.RegisterAsync(dto, "RestaurantOwner");
+            return Ok(ResponseModelHelper.SuccessResult("Registration successful. Check your email."));
+        }
+
+        [HttpPost("login/customer")]
+        public async Task<IActionResult> LoginCustomer([FromBody] LoginDto dto)
+        {
+            var result = await accountService.LoginAsync(dto, "Customer");
+            return Ok(ResponseModelHelper.SuccessResult(result));
+        }
+
+        [HttpPost("login/restaurant")]
+        public async Task<IActionResult> LoginRestaurant([FromBody] LoginDto dto)
+        {
+            var result = await accountService.LoginAsync(dto, "RestaurantOwner");
+            return Ok(ResponseModelHelper.SuccessResult(result));
+        }
+
+        [HttpPost("login/admin")]
+        public async Task<IActionResult> LoginAdmin([FromBody] LoginDto dto)
+        {
+            var result = await accountService.LoginAsync(dto, "Admin");
             return Ok(ResponseModelHelper.SuccessResult(result));
         }
 
         [HttpPost("verify-2fa")]
-        [AllowAnonymous]
-        public async Task<IActionResult> Verify2FA(Verify2FADto dto)
+        public async Task<IActionResult> Verify2FA([FromBody] Verify2FADto dto)
         {
             var result = await accountService.Verify2FAAsync(dto);
             return Ok(ResponseModelHelper.SuccessResult(result));
         }
 
+        [HttpGet("confirm-email")]
+        public async Task<IActionResult> ConfirmEmail([FromQuery] EmailConfirmDto dto)
+        {
+            await accountService.ConfirmEmailAsync(dto);
+            return Ok(ResponseModelHelper.SuccessResult("Email confirmed successfully."));
+        }
+
+        [HttpPost("forgot-password")]
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
+        {
+            await accountService.ForgotPasswordAsync(dto);
+            return Ok(ResponseModelHelper.SuccessResult("Password reset token has been sent to your email."));
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
+        {
+            await accountService.ResetPasswordAsync(dto);
+            return Ok(ResponseModelHelper.SuccessResult("Password changed successfully."));
+        }
+
         [HttpPost("refresh")]
-        [AllowAnonymous]
-        public async Task<IActionResult> Refresh(RefreshTokenDto dto)
+        public async Task<IActionResult> Refresh([FromBody] RefreshTokenDto dto)
         {
             var result = await accountService.RefreshTokenAsync(dto);
             return Ok(ResponseModelHelper.SuccessResult(result));
         }
 
-        [HttpPost("confirm-email")]
-        [AllowAnonymous]
-        public async Task<IActionResult> ConfirmEmail(EmailConfirmDto dto)
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
         {
-            await accountService.ConfirmEmailAsync(dto);
-            return Ok(ResponseModelHelper.SuccessResult("Email confirmed."));
+            await accountService.LogoutAsync(User.GetUserId());
+            return Ok(ResponseModelHelper.SuccessResult("Logged out."));
         }
 
-        [HttpPost("forgot-password")]
-        [AllowAnonymous]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordDto dto)
+        [HttpGet("profile")]
+        [Authorize]
+        public async Task<IActionResult> GetProfile()
         {
-            await accountService.ForgotPasswordAsync(dto);
-            return Ok(ResponseModelHelper.SuccessResult("If the email exists, a reset link has been sent."));
+            var result = await profileService.GetAsync(User.GetUserId());
+            return Ok(ResponseModelHelper.SuccessResult(result));
         }
 
-        [HttpPost("reset-password")]
-        [AllowAnonymous]
-        public async Task<IActionResult> ResetPassword(ResetPasswordDto dto)
+        [HttpPut("profile")]
+        [Authorize]
+        public async Task<IActionResult> UpdateProfile([FromBody] UpdateProfileDto dto)
         {
-            await accountService.ResetPasswordAsync(dto);
-            return Ok(ResponseModelHelper.SuccessResult("Password has been reset."));
+            var result = await profileService.UpdateAsync(User.GetUserId(), dto);
+            return Ok(ResponseModelHelper.SuccessResult(result));
+        }
+
+        [HttpPut("profile/password")]
+        [Authorize]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto dto)
+        {
+            await profileService.ChangePasswordAsync(User.GetUserId(), dto);
+            return Ok(ResponseModelHelper.SuccessResult("Password changed."));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.Common;
+﻿using AutoMapper;
+using Leia.Application.Dtos.Common;
 using Leia.Application.Dtos.ReviewDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
@@ -9,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leia.Infrastructure.Services
 {
-    public class ReviewService(AppDbContext db, INotificationService notificationService) : IReviewService
+    public class ReviewService(AppDbContext db, INotificationService notificationService, IMapper mapper) : IReviewService
     {
         public async Task<ResponseReviewDto> CreateAsync(Guid clientId, CreateReviewDto dto)
         {
@@ -27,14 +28,9 @@ namespace Leia.Infrastructure.Services
             if (await db.Reviews.AnyAsync(r => r.OrderId == order.Id))
                 throw new ConflictException("This order has already been reviewed.");
 
-            var review = new Review
-            {
-                RestaurantId = order.RestaurantId,
-                ClientId = clientId,
-                OrderId = order.Id,
-                Rating = dto.Rating,
-                Comment = dto.Comment
-            };
+            var review = mapper.Map<Review>(dto);
+            review.RestaurantId = order.RestaurantId;
+            review.ClientId = clientId;
 
             db.Reviews.Add(review);
             await db.SaveChangesAsync();
@@ -45,7 +41,11 @@ namespace Leia.Infrastructure.Services
                 NotificationType.NewReview, review.Id);
 
             var client = await db.Users.AsNoTracking().FirstAsync(u => u.Id == clientId);
-            return Map(review, client);
+
+            var result = mapper.Map<ResponseReviewDto>(review);
+            result.ClientName = client.FullName;
+            result.ClientImageUrl = client.ImageUrl;
+            return result;
         }
 
         public async Task<PagedResultDto<ResponseReviewDto>> GetByRestaurantAsync(Guid restaurantId, PaginationDto dto)
@@ -63,24 +63,11 @@ namespace Leia.Infrastructure.Services
 
             return new PagedResultDto<ResponseReviewDto>
             {
-                Items = reviews.Select(r => Map(r, r.Client)).ToList(),
+                Items = mapper.Map<List<ResponseReviewDto>>(reviews),
                 TotalCount = total,
                 Page = dto.Page,
                 PageSize = dto.PageSize
             };
         }
-
-        private static ResponseReviewDto Map(Review r, ApplicationUser client) => new()
-        {
-            Id = r.Id,
-            RestaurantId = r.RestaurantId,
-            ClientId = r.ClientId,
-            ClientName = client.FullName,
-            ClientImageUrl = client.ImageUrl,
-            OrderId = r.OrderId,
-            Rating = r.Rating,
-            Comment = r.Comment,
-            CreatedAt = r.CreatedAt
-        };
     }
 }

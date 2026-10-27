@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.Common;
+﻿using AutoMapper;
+using Leia.Application.Dtos.Common;
 using Leia.Application.Dtos.OrderDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Helpers;
@@ -14,7 +15,8 @@ namespace Leia.Infrastructure.Services
     public class OrderService(
         AppDbContext db,
         INotificationService notificationService,
-        UserManager<ApplicationUser> userManager) : IOrderService
+        UserManager<ApplicationUser> userManager,
+        IMapper mapper) : IOrderService
     {
         public async Task<ResponseOrderDto> CreateAsync(Guid customerId, CreateOrderDto dto)
         {
@@ -36,7 +38,6 @@ namespace Leia.Infrastructure.Services
             if (!IsOpenNow(restaurant))
                 throw new BadRequestException("This restaurant is closed right now.");
 
-            // Prices always come from the database, never from the client
             var ids = dto.Items.Select(i => i.MenuItemId).Distinct().ToList();
             var menuItems = await db.MenuItems
                 .Where(m => ids.Contains(m.Id) && m.RestaurantId == restaurant.Id)
@@ -179,7 +180,7 @@ namespace Leia.Infrastructure.Services
                     throw new ForbiddenException("You are not authorized to view this order.");
             }
 
-            return Map(order);
+            return mapper.Map<ResponseOrderDto>(order);
         }
 
         public async Task<PagedResultDto<ResponseOrderDto>> GetAllForAdminAsync(OrderFilterDto filter)
@@ -187,7 +188,6 @@ namespace Leia.Infrastructure.Services
             return await PageAsync(Query(), filter);
         }
 
-     
         private IQueryable<Order> Query() => db.Orders
             .AsNoTracking()
             .Include(o => o.Customer)
@@ -197,7 +197,8 @@ namespace Leia.Infrastructure.Services
 
         private async Task<ResponseOrderDto> GetMappedAsync(Guid id)
         {
-            return Map(await Query().FirstAsync(o => o.Id == id));
+            var order = await Query().FirstAsync(o => o.Id == id);
+            return mapper.Map<ResponseOrderDto>(order);
         }
 
         private async Task<Restaurant> GetRestaurantAsync(Guid ownerId)
@@ -206,7 +207,7 @@ namespace Leia.Infrastructure.Services
                 ?? throw new NotFoundException("Restaurant profile not found.");
         }
 
-        private static async Task<PagedResultDto<ResponseOrderDto>> PageAsync(IQueryable<Order> query, OrderFilterDto f)
+        private async Task<PagedResultDto<ResponseOrderDto>> PageAsync(IQueryable<Order> query, OrderFilterDto f)
         {
             if (f.Status is OrderStatus status)
                 query = query.Where(o => o.Status == status);
@@ -229,7 +230,7 @@ namespace Leia.Infrastructure.Services
 
             return new PagedResultDto<ResponseOrderDto>
             {
-                Items = orders.Select(Map).ToList(),
+                Items = mapper.Map<List<ResponseOrderDto>>(orders),
                 TotalCount = total,
                 Page = f.Page,
                 PageSize = f.PageSize
@@ -272,37 +273,5 @@ namespace Leia.Infrastructure.Services
 
             throw new InvalidOperationException("Could not generate a unique order number.");
         }
-
-        private static ResponseOrderDto Map(Order o) => new()
-        {
-            Id = o.Id,
-            OrderNumber = o.OrderNumber,
-            CustomerId = o.CustomerId,
-            CustomerName = o.Customer.FullName,
-            CustomerPhone = o.CustomerPhone,
-            RestaurantId = o.RestaurantId,
-            RestaurantName = o.Restaurant.Name,
-            Type = o.Type,
-            Status = o.Status,
-            PaymentMethod = o.PaymentMethod,
-            Subtotal = o.Subtotal,
-            DeliveryFee = o.DeliveryFee,
-            Total = o.Total,
-            DeliveryAddress = o.DeliveryAddress,
-            Notes = o.Notes,
-            CancelReason = o.CancelReason,
-            PlacedAt = o.PlacedAt,
-            HasReview = o.Review != null,
-            Items = o.Items.Select(i => new ResponseOrderItemDto
-            {
-                Id = i.Id,
-                MenuItemId = i.MenuItemId,
-                Name = i.NameAtOrder,
-                Price = i.PriceAtOrder,
-                Quantity = i.Quantity,
-                LineTotal = i.PriceAtOrder * i.Quantity,
-                Notes = i.Notes
-            }).ToList()
-        };
     }
 }

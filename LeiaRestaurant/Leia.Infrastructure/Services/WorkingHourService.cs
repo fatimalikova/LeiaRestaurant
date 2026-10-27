@@ -1,4 +1,5 @@
-﻿using Leia.Application.Dtos.WorkingHourDtos;
+﻿using AutoMapper;
+using Leia.Application.Dtos.WorkingHourDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
 using Leia.Domain.Entities;
@@ -7,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Leia.Infrastructure.Services
 {
-    public class WorkingHourService(AppDbContext db) : IWorkingHourService
+    public class WorkingHourService(AppDbContext db, IMapper mapper) : IWorkingHourService
     {
         public async Task<List<ResponseWorkingHourDto>> GetByRestaurantAsync(Guid restaurantId)
         {
@@ -15,7 +16,8 @@ namespace Leia.Infrastructure.Services
                 .Where(w => w.RestaurantId == restaurantId)
                 .ToListAsync();
 
-            return hours.OrderBy(w => ((int)w.Day + 6) % 7).Select(Map).ToList();
+            var ordered = hours.OrderBy(w => ((int)w.Day + 6) % 7).ToList();
+            return mapper.Map<List<ResponseWorkingHourDto>>(ordered);
         }
 
         public async Task<ResponseWorkingHourDto> CreateAsync(Guid ownerId, CreateWorkingHourDto dto)
@@ -25,17 +27,12 @@ namespace Leia.Infrastructure.Services
             if (await db.WorkingHours.AnyAsync(w => w.RestaurantId == restaurant.Id && w.Day == dto.Day))
                 throw new ConflictException($"Working hours for {dto.Day} already exist. Update them instead.");
 
-            var hour = new WorkingHour
-            {
-                RestaurantId = restaurant.Id,
-                Day = dto.Day,
-                StartTime = dto.StartTime,
-                EndTime = dto.EndTime
-            };
+            var hour = mapper.Map<WorkingHour>(dto);
+            hour.RestaurantId = restaurant.Id;
 
             db.WorkingHours.Add(hour);
             await db.SaveChangesAsync();
-            return Map(hour);
+            return mapper.Map<ResponseWorkingHourDto>(hour);
         }
 
         public async Task<ResponseWorkingHourDto> UpdateAsync(Guid ownerId, Guid id, UpdateWorkingHourDto dto)
@@ -45,12 +42,11 @@ namespace Leia.Infrastructure.Services
             var hour = await db.WorkingHours.FirstOrDefaultAsync(w => w.Id == id && w.RestaurantId == restaurant.Id)
                 ?? throw new NotFoundException("Working hour not found.");
 
-            hour.StartTime = dto.StartTime;
-            hour.EndTime = dto.EndTime;
+            mapper.Map(dto, hour);
             hour.UpdatedAt = DateTime.UtcNow;
 
             await db.SaveChangesAsync();
-            return Map(hour);
+            return mapper.Map<ResponseWorkingHourDto>(hour);
         }
 
         public async Task DeleteAsync(Guid ownerId, Guid id)
@@ -69,13 +65,5 @@ namespace Leia.Infrastructure.Services
             return await db.Restaurants.FirstOrDefaultAsync(r => r.OwnerId == ownerId)
                 ?? throw new NotFoundException("Restaurant profile not found.");
         }
-
-        private static ResponseWorkingHourDto Map(WorkingHour w) => new()
-        {
-            Id = w.Id,
-            Day = w.Day,
-            StartTime = w.StartTime,
-            EndTime = w.EndTime
-        };
     }
 }
