@@ -8,16 +8,18 @@ namespace Leia.Api.Middlewares
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<GlobalExceptionMiddleware> _logger;
+        private readonly IHostEnvironment _env;
 
         private static readonly JsonSerializerOptions _jsonOptions = new()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase
         };
 
-        public GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger)
+        public GlobalExceptionMiddleware(RequestDelegate next, ILogger<GlobalExceptionMiddleware> logger, IHostEnvironment env)
         {
             _next = next;
             _logger = logger;
+            _env = env;
         }
 
         public async Task InvokeAsync(HttpContext context)
@@ -42,6 +44,8 @@ namespace Leia.Api.Middlewares
             if (statusCode == 500)
                 _logger.LogError(ex, "Unhandled exception: {Message}", ex.Message);
 
+            var unexpected = _env.IsDevelopment() ? ex.ToString() : "An unexpected error occurred.";
+
             var response = statusCode switch
             {
                 400 => ResponseModelHelper.BadRequestResult<object>(ex.Message),
@@ -49,7 +53,7 @@ namespace Leia.Api.Middlewares
                 403 => ResponseModelHelper.ForbiddenResult<object>(ex.Message),
                 404 => ResponseModelHelper.NotFoundResult<object>(ex.Message),
                 409 => ResponseModelHelper.ConflictResult<object>(ex.Message),
-                _ => ResponseModelHelper.ErrorResult<object>("An unexpected error occurred.")
+                _ => ResponseModelHelper.ErrorResult<object>(unexpected)
             };
 
             context.Response.ContentType = "application/json";

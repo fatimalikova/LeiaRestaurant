@@ -14,6 +14,7 @@ namespace Leia.Infrastructure.Data
 
             var adminEmail = config["Admin:Email"];
             var adminPassword = config["Admin:Password"];
+            var adminUserName = config["Admin:UserName"] ?? adminEmail;
             var adminFullName = config["Admin:FullName"] ?? "System Admin";
 
             if (string.IsNullOrWhiteSpace(adminEmail) || string.IsNullOrWhiteSpace(adminPassword))
@@ -26,7 +27,7 @@ namespace Leia.Infrastructure.Data
             {
                 FullName = adminFullName,
                 Email = adminEmail,
-                UserName = adminEmail,
+                UserName = adminUserName,
                 EmailConfirmed = true
             };
 

@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Leia.Application.Dtos.AccountDtos;
 using Leia.Application.Dtos.UserDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
@@ -53,9 +52,10 @@ namespace Leia.Infrastructure.Services
 
         public async Task<AuthResponseDto> LoginAsync(LoginDto dto, string requiredRole)
         {
-            var user = await userManager.FindByEmailAsync(dto.Email);
+            var user = await userManager.FindByEmailAsync(dto.Login) ?? await userManager.FindByNameAsync(dto.Login);
+
             if (user == null || !await userManager.CheckPasswordAsync(user, dto.Password))
-                throw new UnauthorizedException("Invalid email or password.");
+                throw new UnauthorizedException("Invalid login or password.");
 
             var requireConfirmation = bool.TryParse(config["Auth:RequireEmailConfirmation"], out var confirm) && confirm;
             if (requireConfirmation && !user.EmailConfirmed)

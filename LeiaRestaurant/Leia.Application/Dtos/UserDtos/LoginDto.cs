@@ -1,13 +1,10 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace Leia.Application.Dtos.AccountDtos
+namespace Leia.Application.Dtos.UserDtos
 {
     public class LoginDto
     {
-        public string Email { get; set; } = string.Empty;
+        public string Login { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
     }
 
@@ -15,9 +12,8 @@ namespace Leia.Application.Dtos.AccountDtos
     {
         public LoginValidator()
         {
-            RuleFor(x => x.Email)
-                .NotEmpty().WithMessage("Email is required.")
-                .EmailAddress().WithMessage("Email format is invalid.");
+            RuleFor(x => x.Login)
+                .NotEmpty().WithMessage("Email or username is required.");
 
             RuleFor(x => x.Password)
                 .NotEmpty().WithMessage("Password is required.");

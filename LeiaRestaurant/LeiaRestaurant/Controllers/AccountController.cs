@@ -1,5 +1,4 @@
 ﻿using Leia.Api.Extensions;
-using Leia.Application.Dtos.AccountDtos;
 using Leia.Application.Dtos.ProfileDtos;
 using Leia.Application.Dtos.UserDtos;
 using Leia.Application.Helpers;
