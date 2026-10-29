@@ -29,6 +29,7 @@ namespace Leia.Application.Dtos.OrderDtos
 
         public bool HasReview { get; set; }
         public List<ResponseOrderItemDto> Items { get; set; } = new();
+        public List<ResponseOrderStatusHistoryDto> Timeline { get; set; } = new();
     }
 
     public class ResponseOrderItemDto
@@ -40,5 +41,13 @@ namespace Leia.Application.Dtos.OrderDtos
         public int Quantity { get; set; }
         public decimal LineTotal { get; set; }
         public string? Notes { get; set; }
+    }
+
+    public class ResponseOrderStatusHistoryDto
+    {
+        public OrderStatus? FromStatus { get; set; }
+        public OrderStatus ToStatus { get; set; }
+        public string? Comment { get; set; }
+        public DateTime ChangedAt { get; set; }
     }
 }

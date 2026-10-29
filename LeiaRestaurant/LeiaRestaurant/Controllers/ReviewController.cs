@@ -27,5 +27,21 @@ namespace Leia.Api.Controllers
             var result = await reviewService.CreateAsync(User.GetUserId(), dto);
             return StatusCode(201, ResponseModelHelper.CreatedResult(result));
         }
+
+        [HttpPost("{id:guid}/reply")]
+        [Authorize(Roles = "RestaurantOwner")]
+        public async Task<IActionResult> Reply(Guid id, CreateReviewReplyDto dto)
+        {
+            var result = await reviewService.ReplyAsync(User.GetUserId(), id, dto);
+            return StatusCode(201, ResponseModelHelper.CreatedResult(result));
+        }
+
+        [HttpDelete("{id:guid}/reply")]
+        [Authorize(Roles = "RestaurantOwner")]
+        public async Task<IActionResult> DeleteReply(Guid id)
+        {
+            await reviewService.DeleteReplyAsync(User.GetUserId(), id);
+            return Ok(ResponseModelHelper.SuccessResult("Deleted."));
+        }
     }
 }

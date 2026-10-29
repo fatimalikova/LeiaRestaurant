@@ -36,5 +36,7 @@ namespace Leia.Domain.Entities
         public ICollection<MenuItem> MenuItems { get; set; } = new List<MenuItem>();
         public ICollection<Order> Orders { get; set; } = new List<Order>();
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
+        public ICollection<RestaurantCuisine> Cuisines { get; set; } = new List<RestaurantCuisine>();
+        public ICollection<RestaurantImage> Images { get; set; } = new List<RestaurantImage>();
     }
 }

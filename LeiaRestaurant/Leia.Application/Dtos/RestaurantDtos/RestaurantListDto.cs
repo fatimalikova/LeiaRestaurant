@@ -14,5 +14,6 @@
         public double AverageRating { get; set; }
         public int ReviewCount { get; set; }
         public bool IsOpenNow { get; set; }
+        public List<string> Cuisines { get; set; } = new();
     }
-}   
+}

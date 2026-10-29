@@ -18,5 +18,6 @@ namespace Leia.Domain.Entities
 
         public int Rating { get; set; }          
         public string? Comment { get; set; }
+        public ReviewReply? Reply { get; set; } 
     }
 }

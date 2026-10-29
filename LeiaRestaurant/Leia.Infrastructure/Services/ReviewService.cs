@@ -52,6 +52,7 @@ namespace Leia.Infrastructure.Services
         {
             var query = db.Reviews.AsNoTracking()
                 .Include(r => r.Client)
+                .Include(r => r.Reply)
                 .Where(r => r.RestaurantId == restaurantId);
 
             var total = await query.CountAsync();
@@ -68,6 +69,57 @@ namespace Leia.Infrastructure.Services
                 Page = dto.Page,
                 PageSize = dto.PageSize
             };
+        }
+
+        public async Task<ResponseReviewDto> ReplyAsync(Guid ownerId, Guid reviewId, CreateReviewReplyDto dto)
+        {
+            var restaurant = await GetRestaurantAsync(ownerId);
+
+            var review = await db.Reviews
+                .Include(r => r.Client)
+                .Include(r => r.Reply)
+                .FirstOrDefaultAsync(r => r.Id == reviewId && r.RestaurantId == restaurant.Id)
+                ?? throw new NotFoundException("Review not found.");
+
+            if (review.Reply != null)
+                throw new ConflictException("You have already replied to this review.");
+
+            review.Reply = new ReviewReply
+            {
+                OwnerId = ownerId,
+                Content = dto.Content.Trim()
+            };
+
+            await db.SaveChangesAsync();
+
+            await notificationService.CreateAsync(
+                review.ClientId, "Restaurant replied to your review",
+                $"\"{restaurant.Name}\" replied to your review.",
+                NotificationType.ReviewReplied, review.Id);
+
+            return mapper.Map<ResponseReviewDto>(review);
+        }
+
+        public async Task DeleteReplyAsync(Guid ownerId, Guid reviewId)
+        {
+            var restaurant = await GetRestaurantAsync(ownerId);
+
+            var review = await db.Reviews
+                .Include(r => r.Reply)
+                .FirstOrDefaultAsync(r => r.Id == reviewId && r.RestaurantId == restaurant.Id)
+                ?? throw new NotFoundException("Review not found.");
+
+            if (review.Reply == null)
+                throw new NotFoundException("Reply not found.");
+
+            db.ReviewReplies.Remove(review.Reply);
+            await db.SaveChangesAsync();
+        }
+
+        private async Task<Restaurant> GetRestaurantAsync(Guid ownerId)
+        {
+            return await db.Restaurants.FirstOrDefaultAsync(r => r.OwnerId == ownerId)
+                ?? throw new NotFoundException("Restaurant profile not found.");
         }
     }
 }

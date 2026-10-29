@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Leia.Application.Dtos.Common;
+using Leia.Application.Dtos.CuisineDtos;
 using Leia.Application.Dtos.RestaurantDtos;
+using Leia.Application.Dtos.RestaurantImageDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Helpers;
 using Leia.Application.Interfaces;
@@ -13,6 +15,8 @@ namespace Leia.Infrastructure.Services
 {
     public class RestaurantService(AppDbContext db, INotificationService notificationService, IMapper mapper) : IRestaurantService
     {
+        private const int MaxImages = 10;
+
         public async Task<PagedResultDto<RestaurantListDto>> GetAllAsync(RestaurantFilterDto filter)
         {
             var local = TimeHelper.NowLocal();
@@ -28,6 +32,9 @@ namespace Leia.Infrastructure.Services
                 var search = filter.Search.Trim();
                 query = query.Where(r => r.Name.Contains(search) || r.Address.Contains(search));
             }
+
+            if (filter.CuisineId is Guid cuisineId)
+                query = query.Where(r => r.Cuisines.Any(c => c.CuisineId == cuisineId));
 
             if (filter.AcceptsDelivery is bool delivery)
                 query = query.Where(r => r.AcceptsDelivery == delivery);
@@ -50,23 +57,7 @@ namespace Leia.Infrastructure.Services
                 .ThenBy(r => r.Name)
                 .Skip((filter.Page - 1) * filter.PageSize)
                 .Take(filter.PageSize)
-                .Select(r => new RestaurantListDto
-                {
-                    Id = r.Id,
-                    Name = r.Name,
-                    LogoUrl = r.LogoUrl,
-                    CoverUrl = r.CoverUrl,
-                    Address = r.Address,
-                    AcceptsDelivery = r.AcceptsDelivery,
-                    AcceptsPickup = r.AcceptsPickup,
-                    MinOrderAmount = r.MinOrderAmount,
-                    DeliveryFee = r.DeliveryFee,
-                    AverageRating = r.Reviews.Average(x => (double?)x.Rating) ?? 0,
-                    ReviewCount = r.Reviews.Count(),
-                    IsOpenNow =
-                        r.WorkingHours.Any(w => w.Day == day && w.StartTime <= time && w.EndTime > time) &&
-                        !r.UnavailableDays.Any(u => u.Date == today)
-                })
+                .ProjectToList()
                 .ToListAsync();
 
             foreach (var i in items)
@@ -83,8 +74,7 @@ namespace Leia.Infrastructure.Services
 
         public async Task<ResponseRestaurantDto> GetByIdAsync(Guid id)
         {
-            var restaurant = await db.Restaurants
-                .Include(r => r.WorkingHours)
+            var restaurant = await WithDetails(db.Restaurants)
                 .FirstOrDefaultAsync(r => r.Id == id && r.Status == RestaurantStatus.Approved && r.IsActive)
                 ?? throw new NotFoundException("Restaurant not found.");
 
@@ -93,11 +83,7 @@ namespace Leia.Infrastructure.Services
 
         public async Task<ResponseRestaurantDto> GetMyAsync(Guid ownerId)
         {
-            var restaurant = await db.Restaurants
-                .Include(r => r.WorkingHours)
-                .FirstOrDefaultAsync(r => r.OwnerId == ownerId)
-                ?? throw new NotFoundException("Restaurant profile not found.");
-
+            var restaurant = await GetOwnAsync(ownerId);
             return await MapAsync(restaurant);
         }
 
@@ -116,15 +102,12 @@ namespace Leia.Infrastructure.Services
             db.Restaurants.Add(restaurant);
             await db.SaveChangesAsync();
 
-            return await MapAsync(restaurant);
+            return await MapAsync(await GetOwnAsync(ownerId));
         }
 
         public async Task<ResponseRestaurantDto> UpdateAsync(Guid ownerId, UpdateRestaurantDto dto)
         {
-            var restaurant = await db.Restaurants
-                .Include(r => r.WorkingHours)
-                .FirstOrDefaultAsync(r => r.OwnerId == ownerId)
-                ?? throw new NotFoundException("Restaurant profile not found.");
+            var restaurant = await GetOwnAsync(ownerId);
 
             if (restaurant.Status == RestaurantStatus.Blocked)
                 throw new ForbiddenException("Your restaurant is blocked. Please contact support.");
@@ -136,9 +119,61 @@ namespace Leia.Infrastructure.Services
             return await MapAsync(restaurant);
         }
 
+        public async Task<ResponseRestaurantDto> SetCuisinesAsync(Guid ownerId, SetRestaurantCuisinesDto dto)
+        {
+            var restaurant = await GetOwnAsync(ownerId);
+
+            var ids = dto.CuisineIds.Distinct().ToList();
+
+            var validCount = await db.Cuisines.CountAsync(c => ids.Contains(c.Id) && c.IsActive);
+            if (validCount != ids.Count)
+                throw new BadRequestException("One or more cuisines are invalid.");
+
+            var toRemove = restaurant.Cuisines.Where(c => !ids.Contains(c.CuisineId)).ToList();
+            var existingIds = restaurant.Cuisines.Select(c => c.CuisineId).ToHashSet();
+
+            db.RestaurantCuisines.RemoveRange(toRemove);
+            db.RestaurantCuisines.AddRange(ids
+                .Where(id => !existingIds.Contains(id))
+                .Select(id => new RestaurantCuisine { RestaurantId = restaurant.Id, CuisineId = id }));
+
+            await db.SaveChangesAsync();
+
+            return await MapAsync(await GetOwnAsync(ownerId, asNoTracking: true));
+        }
+
+        public async Task<ResponseRestaurantDto> AddImageAsync(Guid ownerId, AddRestaurantImageDto dto)
+        {
+            var restaurant = await GetOwnAsync(ownerId);
+
+            if (restaurant.Images.Count >= MaxImages)
+                throw new BadRequestException($"A restaurant can have at most {MaxImages} images.");
+
+            var image = mapper.Map<RestaurantImage>(dto);
+            image.RestaurantId = restaurant.Id;
+
+            db.RestaurantImages.Add(image);
+            await db.SaveChangesAsync();
+
+            return await MapAsync(await GetOwnAsync(ownerId, asNoTracking: true));
+        }
+
+        public async Task<ResponseRestaurantDto> DeleteImageAsync(Guid ownerId, Guid imageId)
+        {
+            var restaurant = await GetOwnAsync(ownerId);
+
+            var image = restaurant.Images.FirstOrDefault(i => i.Id == imageId)
+                ?? throw new NotFoundException("Image not found.");
+
+            db.RestaurantImages.Remove(image);
+            await db.SaveChangesAsync();
+
+            return await MapAsync(await GetOwnAsync(ownerId, asNoTracking: true));
+        }
+
         public async Task<PagedResultDto<ResponseRestaurantDto>> GetAllForAdminAsync(PaginationDto dto, RestaurantStatus? status)
         {
-            var query = db.Restaurants.AsNoTracking().Include(r => r.WorkingHours).AsQueryable();
+            var query = WithDetails(db.Restaurants.AsNoTracking());
 
             if (status is RestaurantStatus s)
                 query = query.Where(r => r.Status == s);
@@ -161,8 +196,7 @@ namespace Leia.Infrastructure.Services
 
         public async Task<ResponseRestaurantDto> UpdateStatusAsync(Guid id, UpdateRestaurantStatusDto dto)
         {
-            var restaurant = await db.Restaurants
-                .Include(r => r.WorkingHours)
+            var restaurant = await WithDetails(db.Restaurants)
                 .FirstOrDefaultAsync(r => r.Id == id)
                 ?? throw new NotFoundException("Restaurant not found.");
 
@@ -182,6 +216,19 @@ namespace Leia.Infrastructure.Services
                 NotificationType.System, restaurant.Id);
 
             return await MapAsync(restaurant);
+        }
+
+        private static IQueryable<Restaurant> WithDetails(IQueryable<Restaurant> query) => query
+            .Include(r => r.WorkingHours)
+            .Include(r => r.Images)
+            .Include(r => r.Cuisines).ThenInclude(c => c.Cuisine);
+
+        private async Task<Restaurant> GetOwnAsync(Guid ownerId, bool asNoTracking = false)
+        {
+            var query = asNoTracking ? db.Restaurants.AsNoTracking() : db.Restaurants.AsQueryable();
+
+            return await WithDetails(query).FirstOrDefaultAsync(r => r.OwnerId == ownerId)
+                ?? throw new NotFoundException("Restaurant profile not found.");
         }
 
         private async Task<ResponseRestaurantDto> MapAsync(Restaurant restaurant)

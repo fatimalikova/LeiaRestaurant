@@ -32,6 +32,7 @@ namespace Leia.Domain.Entities
         public DateTime PlacedAt { get; set; } = DateTime.UtcNow;
 
         public ICollection<OrderItem> Items { get; set; } = new List<OrderItem>();
+        public ICollection<OrderStatusHistory> History { get; set; } = new List<OrderStatusHistory>();
         public Review? Review { get; set; }
     }
 }

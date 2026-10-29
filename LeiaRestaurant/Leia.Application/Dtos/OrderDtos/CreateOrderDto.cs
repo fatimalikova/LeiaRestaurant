@@ -8,6 +8,7 @@ namespace Leia.Application.Dtos.OrderDtos
         public Guid RestaurantId { get; set; }
         public OrderType Type { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
+        public Guid? AddressId { get; set; }
         public string? DeliveryAddress { get; set; }
         public string CustomerPhone { get; set; } = string.Empty;
         public string? Notes { get; set; }
@@ -39,8 +40,8 @@ namespace Leia.Application.Dtos.OrderDtos
                 .MaximumLength(30).WithMessage("Phone number cannot exceed 30 characters.");
 
             RuleFor(x => x.DeliveryAddress)
-                .NotEmpty().WithMessage("Delivery address is required for delivery orders.")
-                .When(x => x.Type == OrderType.Delivery);
+                .NotEmpty().WithMessage("Delivery address or saved address is required for delivery orders.")
+                .When(x => x.Type == OrderType.Delivery && !x.AddressId.HasValue);
 
             RuleFor(x => x.DeliveryAddress)
                 .MaximumLength(300).WithMessage("Address cannot exceed 300 characters.")

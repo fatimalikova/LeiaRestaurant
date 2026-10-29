@@ -5,6 +5,7 @@ namespace Leia.Application.Dtos.RestaurantDtos
     public class RestaurantFilterDto
     {
         public string? Search { get; set; }
+        public Guid? CuisineId { get; set; }
         public double? MinRating { get; set; }
         public bool? AcceptsDelivery { get; set; }
         public bool? AcceptsPickup { get; set; }

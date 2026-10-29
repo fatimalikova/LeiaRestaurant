@@ -4,6 +4,7 @@ using Leia.Application.Dtos.UserDtos;
 using Leia.Application.Helpers;
 using Leia.Application.Interfaces;
 using Leia.Application.Profiles;
+using Leia.Application.Settings;
 using Leia.Domain.Entities;
 using Leia.Infrastructure.Data;
 using Leia.Infrastructure.Services;
@@ -41,7 +42,6 @@ namespace Leia.Api
                 };
             });
 
-            // Front üçün CORS policy
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowFrontend", policy =>
@@ -92,8 +92,10 @@ namespace Leia.Api
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
 
-            var jwtKey = configuration["JWT:Key"];
-            if (string.IsNullOrWhiteSpace(jwtKey) || jwtKey.Length < 32)
+            services.Configure<JwtSettings>(configuration.GetSection("JWT"));
+            var jwt = configuration.GetSection("JWT").Get<JwtSettings>() ?? new JwtSettings();
+
+            if (string.IsNullOrWhiteSpace(jwt.Key) || jwt.Key.Length < 32)
                 throw new InvalidOperationException("JWT:Key tapılmadı və ya 32 simvoldan qısadır. User Secrets-ə yaz.");
 
             services.AddAuthentication(options =>
@@ -109,9 +111,9 @@ namespace Leia.Api
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = configuration["JWT:Issuer"],
-                    ValidAudience = configuration["JWT:Audience"],
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtKey))
+                    ValidIssuer = jwt.Issuer,
+                    ValidAudience = jwt.Audience,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key))
                 };
 
                 options.Events = new JwtBearerEvents
@@ -147,6 +149,9 @@ namespace Leia.Api
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<ISliderService, SliderService>();
             services.AddScoped<ISystemSettingService, SystemSettingService>();
+            services.AddScoped<ICuisineService, CuisineService>();
+            services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<IFavoriteService, FavoriteService>();
 
             return services;
         }

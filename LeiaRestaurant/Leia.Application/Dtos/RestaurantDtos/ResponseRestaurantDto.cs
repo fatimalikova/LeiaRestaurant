@@ -1,4 +1,6 @@
-﻿using Leia.Application.Dtos.WorkingHourDtos;
+﻿using Leia.Application.Dtos.CuisineDtos;
+using Leia.Application.Dtos.RestaurantImageDtos;
+using Leia.Application.Dtos.WorkingHourDtos;
 using Leia.Domain.Enums;
 
 namespace Leia.Application.Dtos.RestaurantDtos
@@ -25,5 +27,7 @@ namespace Leia.Application.Dtos.RestaurantDtos
         public double AverageRating { get; set; }
         public int ReviewCount { get; set; }
         public List<ResponseWorkingHourDto> WorkingHours { get; set; } = new();
+        public List<ResponseCuisineDto> Cuisines { get; set; } = new();
+        public List<ResponseRestaurantImageDto> Images { get; set; } = new();
     }
 }

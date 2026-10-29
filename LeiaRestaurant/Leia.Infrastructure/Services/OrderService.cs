@@ -38,6 +38,23 @@ namespace Leia.Infrastructure.Services
             if (!IsOpenNow(restaurant))
                 throw new BadRequestException("This restaurant is closed right now.");
 
+            string? deliveryAddress = null;
+            if (dto.Type == OrderType.Delivery)
+            {
+                if (dto.AddressId.HasValue)
+                {
+                    var address = await db.UserAddresses.AsNoTracking()
+                        .FirstOrDefaultAsync(a => a.Id == dto.AddressId && a.UserId == customerId)
+                        ?? throw new NotFoundException("Address not found.");
+
+                    deliveryAddress = address.AddressLine;
+                }
+                else
+                {
+                    deliveryAddress = dto.DeliveryAddress;
+                }
+            }
+
             var ids = dto.Items.Select(i => i.MenuItemId).Distinct().ToList();
             var menuItems = await db.MenuItems
                 .Where(m => ids.Contains(m.Id) && m.RestaurantId == restaurant.Id)
@@ -57,7 +74,7 @@ namespace Leia.Infrastructure.Services
                 RestaurantId = restaurant.Id,
                 Type = dto.Type,
                 PaymentMethod = dto.PaymentMethod,
-                DeliveryAddress = dto.Type == OrderType.Delivery ? dto.DeliveryAddress : null,
+                DeliveryAddress = deliveryAddress,
                 CustomerPhone = dto.CustomerPhone,
                 Notes = dto.Notes
             };
@@ -82,6 +99,8 @@ namespace Leia.Infrastructure.Services
 
             order.DeliveryFee = dto.Type == OrderType.Delivery ? restaurant.DeliveryFee : 0;
             order.Total = order.Subtotal + order.DeliveryFee;
+
+            AddHistory(order, null, OrderStatus.Pending, customerId, null);
 
             db.Orders.Add(order);
             await db.SaveChangesAsync();
@@ -123,9 +142,12 @@ namespace Leia.Infrastructure.Services
                 throw new BadRequestException("This order can no longer be cancelled.");
             }
 
+            var previous = order.Status;
             order.Status = OrderStatus.Cancelled;
             order.CancelReason = dto.Reason;
             order.UpdatedAt = DateTime.UtcNow;
+
+            AddHistory(order, previous, OrderStatus.Cancelled, customerId, dto.Reason);
             await db.SaveChangesAsync();
 
             await notificationService.CreateAsync(
@@ -152,12 +174,14 @@ namespace Leia.Infrastructure.Services
             if (!IsTransitionAllowed(order, dto.Status))
                 throw new BadRequestException($"Order cannot move from {order.Status} to {dto.Status}.");
 
+            var previous = order.Status;
             order.Status = dto.Status;
             order.UpdatedAt = DateTime.UtcNow;
 
             if (dto.Status == OrderStatus.Rejected)
                 order.CancelReason = dto.Comment;
 
+            AddHistory(order, previous, dto.Status, ownerId, dto.Comment);
             await db.SaveChangesAsync();
 
             await notificationService.CreateAsync(
@@ -188,11 +212,23 @@ namespace Leia.Infrastructure.Services
             return await PageAsync(Query(), filter);
         }
 
+        private static void AddHistory(Order order, OrderStatus? from, OrderStatus to, Guid userId, string? comment)
+        {
+            order.History.Add(new OrderStatusHistory
+            {
+                FromStatus = from,
+                ToStatus = to,
+                ChangedByUserId = userId,
+                Comment = comment
+            });
+        }
+
         private IQueryable<Order> Query() => db.Orders
             .AsNoTracking()
             .Include(o => o.Customer)
             .Include(o => o.Restaurant)
             .Include(o => o.Items)
+            .Include(o => o.History)
             .Include(o => o.Review);
 
         private async Task<ResponseOrderDto> GetMappedAsync(Guid id)

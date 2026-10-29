@@ -107,6 +107,69 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("Leia.Domain.Entities.Cuisine", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("IconUrl")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("Name")
+                        .IsUnique();
+
+                    b.ToTable("Cuisines");
+                });
+
+            modelBuilder.Entity("Leia.Domain.Entities.Favorite", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.HasIndex("UserId", "RestaurantId")
+                        .IsUnique();
+
+                    b.ToTable("Favorites");
+                });
+
             modelBuilder.Entity("Leia.Domain.Entities.MenuCategory", b =>
                 {
                     b.Property<Guid>("Id")
@@ -355,6 +418,41 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.ToTable("OrderItems");
                 });
 
+            modelBuilder.Entity("Leia.Domain.Entities.OrderStatusHistory", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("ChangedByUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Comment")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("FromStatus")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ToStatus")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("OrderStatusHistories");
+                });
+
             modelBuilder.Entity("Leia.Domain.Entities.Restaurant", b =>
                 {
                     b.Property<Guid>("Id")
@@ -431,6 +529,51 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.ToTable("Restaurants");
                 });
 
+            modelBuilder.Entity("Leia.Domain.Entities.RestaurantCuisine", b =>
+                {
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CuisineId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("RestaurantId", "CuisineId");
+
+                    b.HasIndex("CuisineId");
+
+                    b.ToTable("RestaurantCuisines");
+                });
+
+            modelBuilder.Entity("Leia.Domain.Entities.RestaurantImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<Guid>("RestaurantId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("SortOrder")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RestaurantId");
+
+                    b.ToTable("RestaurantImages");
+                });
+
             modelBuilder.Entity("Leia.Domain.Entities.Review", b =>
                 {
                     b.Property<Guid>("Id")
@@ -472,6 +615,37 @@ namespace Leia.Infrastructure.Data.Migrations
                         {
                             t.HasCheckConstraint("CK_Review_Rating", "[Rating] >= 1 AND [Rating] <= 5");
                         });
+                });
+
+            modelBuilder.Entity("Leia.Domain.Entities.ReviewReply", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("OwnerId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ReviewId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ReviewId")
+                        .IsUnique();
+
+                    b.ToTable("ReviewReplies");
                 });
 
             modelBuilder.Entity("Leia.Domain.Entities.Slider", b =>
@@ -567,6 +741,51 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.HasIndex("RestaurantId");
 
                     b.ToTable("UnavailableDays");
+                });
+
+            modelBuilder.Entity("Leia.Domain.Entities.UserAddress", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AddressLine")
+                        .IsRequired()
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsDefault")
+                        .HasColumnType("bit");
+
+                    b.Property<double?>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double?>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Note")
+                        .HasMaxLength(300)
+                        .HasColumnType("nvarchar(300)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("UserAddresses");
                 });
 
             modelBuilder.Entity("Leia.Domain.Entities.WorkingHour", b =>
@@ -732,6 +951,25 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Leia.Domain.Entities.Favorite", b =>
+                {
+                    b.HasOne("Leia.Domain.Entities.Restaurant", "Restaurant")
+                        .WithMany()
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Leia.Domain.Entities.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Leia.Domain.Entities.MenuCategory", b =>
                 {
                     b.HasOne("Leia.Domain.Entities.Restaurant", "Restaurant")
@@ -810,6 +1048,17 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.Navigation("Order");
                 });
 
+            modelBuilder.Entity("Leia.Domain.Entities.OrderStatusHistory", b =>
+                {
+                    b.HasOne("Leia.Domain.Entities.Order", "Order")
+                        .WithMany("History")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+                });
+
             modelBuilder.Entity("Leia.Domain.Entities.Restaurant", b =>
                 {
                     b.HasOne("Leia.Domain.Entities.ApplicationUser", "Owner")
@@ -819,6 +1068,36 @@ namespace Leia.Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("Leia.Domain.Entities.RestaurantCuisine", b =>
+                {
+                    b.HasOne("Leia.Domain.Entities.Cuisine", "Cuisine")
+                        .WithMany("Restaurants")
+                        .HasForeignKey("CuisineId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Leia.Domain.Entities.Restaurant", "Restaurant")
+                        .WithMany("Cuisines")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cuisine");
+
+                    b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("Leia.Domain.Entities.RestaurantImage", b =>
+                {
+                    b.HasOne("Leia.Domain.Entities.Restaurant", "Restaurant")
+                        .WithMany("Images")
+                        .HasForeignKey("RestaurantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Restaurant");
                 });
 
             modelBuilder.Entity("Leia.Domain.Entities.Review", b =>
@@ -848,6 +1127,17 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.Navigation("Restaurant");
                 });
 
+            modelBuilder.Entity("Leia.Domain.Entities.ReviewReply", b =>
+                {
+                    b.HasOne("Leia.Domain.Entities.Review", "Review")
+                        .WithOne("Reply")
+                        .HasForeignKey("Leia.Domain.Entities.ReviewReply", "ReviewId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Review");
+                });
+
             modelBuilder.Entity("Leia.Domain.Entities.UnavailableDay", b =>
                 {
                     b.HasOne("Leia.Domain.Entities.Restaurant", "Restaurant")
@@ -857,6 +1147,17 @@ namespace Leia.Infrastructure.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Restaurant");
+                });
+
+            modelBuilder.Entity("Leia.Domain.Entities.UserAddress", b =>
+                {
+                    b.HasOne("Leia.Domain.Entities.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Leia.Domain.Entities.WorkingHour", b =>
@@ -928,6 +1229,11 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.Navigation("Orders");
                 });
 
+            modelBuilder.Entity("Leia.Domain.Entities.Cuisine", b =>
+                {
+                    b.Navigation("Restaurants");
+                });
+
             modelBuilder.Entity("Leia.Domain.Entities.MenuCategory", b =>
                 {
                     b.Navigation("MenuItems");
@@ -935,6 +1241,8 @@ namespace Leia.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Leia.Domain.Entities.Order", b =>
                 {
+                    b.Navigation("History");
+
                     b.Navigation("Items");
 
                     b.Navigation("Review");
@@ -942,6 +1250,10 @@ namespace Leia.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Leia.Domain.Entities.Restaurant", b =>
                 {
+                    b.Navigation("Cuisines");
+
+                    b.Navigation("Images");
+
                     b.Navigation("MenuCategories");
 
                     b.Navigation("MenuItems");
@@ -953,6 +1265,11 @@ namespace Leia.Infrastructure.Data.Migrations
                     b.Navigation("UnavailableDays");
 
                     b.Navigation("WorkingHours");
+                });
+
+            modelBuilder.Entity("Leia.Domain.Entities.Review", b =>
+                {
+                    b.Navigation("Reply");
                 });
 #pragma warning restore 612, 618
         }
