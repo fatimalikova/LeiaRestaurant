@@ -1,0 +1,11 @@
+﻿namespace Leia.Application.Dtos.TableDtos
+{
+    public class ResponseTableDto
+    {
+        public Guid Id { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public int Capacity { get; set; }
+        public string? Zone { get; set; }
+        public bool IsActive { get; set; }
+    }
+}

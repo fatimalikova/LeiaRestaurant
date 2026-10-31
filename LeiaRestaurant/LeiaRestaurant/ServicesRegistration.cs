@@ -152,7 +152,8 @@ namespace Leia.Api
             services.AddScoped<ICuisineService, CuisineService>();
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IFavoriteService, FavoriteService>();
-
+            services.AddScoped<ITableService, TableService>();
+            services.AddScoped<IReservationService, ReservationService>();
             return services;
         }
     }

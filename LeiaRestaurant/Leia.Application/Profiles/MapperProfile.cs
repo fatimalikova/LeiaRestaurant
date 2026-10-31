@@ -12,9 +12,12 @@ using Leia.Application.Dtos.RestaurantImageDtos;
 using Leia.Application.Dtos.ReviewDtos;
 using Leia.Application.Dtos.SliderDtos;
 using Leia.Application.Dtos.SystemSettingDtos;
+using Leia.Application.Dtos.TableDtos;
 using Leia.Application.Dtos.UnavailableDayDtos;
 using Leia.Application.Dtos.UserDtos;
 using Leia.Application.Dtos.WorkingHourDtos;
+using Leia.Application.Dtos.ReservationDtos;
+using Leia.Application.Dtos.TableDtos;
 using Leia.Domain.Entities;
 
 namespace Leia.Application.Profiles
@@ -104,6 +107,15 @@ namespace Leia.Application.Profiles
 
             CreateMap<SystemSetting, ResponseSystemSettingDto>();
             CreateMap<UpdateSystemSettingDto, SystemSetting>();
+
+            CreateMap<RestaurantTable, ResponseTableDto>();
+            CreateMap<CreateTableDto, RestaurantTable>();
+            CreateMap<UpdateTableDto, RestaurantTable>();
+
+            CreateMap<Reservation, ResponseReservationDto>()
+                .ForMember(d => d.RestaurantName, opt => opt.MapFrom(s => s.Restaurant.Name))
+                .ForMember(d => d.CustomerName, opt => opt.MapFrom(s => s.Customer.FullName))
+                .ForMember(d => d.TableName, opt => opt.MapFrom(s => s.Table.Name));
         }
     }
 }

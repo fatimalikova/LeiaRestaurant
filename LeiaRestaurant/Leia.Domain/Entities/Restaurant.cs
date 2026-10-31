@@ -29,6 +29,11 @@ namespace Leia.Domain.Entities
         public bool AcceptsPickup { get; set; } = true;
         public decimal MinOrderAmount { get; set; }
         public decimal DeliveryFee { get; set; }
+        public bool AcceptsReservations { get; set; }
+        public bool AutoConfirmReservations { get; set; }
+        public int ReservationDurationMinutes { get; set; } = 90;
+
+        public ICollection<RestaurantTable> Tables { get; set; } = new List<RestaurantTable>();
 
         public ICollection<WorkingHour> WorkingHours { get; set; } = new List<WorkingHour>();
         public ICollection<UnavailableDay> UnavailableDays { get; set; } = new List<UnavailableDay>();

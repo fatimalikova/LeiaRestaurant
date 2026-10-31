@@ -7,5 +7,8 @@ public enum NotificationType
     OrderCancelled = 2,
     NewReview = 3,
     System = 4,
-    ReviewReplied = 5
+    ReviewReplied = 5,
+    ReservationCreated = 6,
+    ReservationStatusChanged = 7,
+    ReservationCancelled = 8
 }

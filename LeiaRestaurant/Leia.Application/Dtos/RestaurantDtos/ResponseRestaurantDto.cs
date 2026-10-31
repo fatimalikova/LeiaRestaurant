@@ -26,6 +26,9 @@ namespace Leia.Application.Dtos.RestaurantDtos
         public decimal DeliveryFee { get; set; }
         public double AverageRating { get; set; }
         public int ReviewCount { get; set; }
+        public bool AcceptsReservations { get; set; }
+        public bool AutoConfirmReservations { get; set; }
+        public int ReservationDurationMinutes { get; set; }
         public List<ResponseWorkingHourDto> WorkingHours { get; set; } = new();
         public List<ResponseCuisineDto> Cuisines { get; set; } = new();
         public List<ResponseRestaurantImageDto> Images { get; set; } = new();
