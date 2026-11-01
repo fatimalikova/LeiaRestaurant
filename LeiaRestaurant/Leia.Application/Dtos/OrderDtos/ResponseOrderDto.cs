@@ -19,13 +19,16 @@ namespace Leia.Application.Dtos.OrderDtos
         public PaymentMethod PaymentMethod { get; set; }
 
         public decimal Subtotal { get; set; }
+        public decimal Discount { get; set; }
         public decimal DeliveryFee { get; set; }
         public decimal Total { get; set; }
+        public string? CouponCode { get; set; }
 
         public string? DeliveryAddress { get; set; }
         public string? Notes { get; set; }
         public string? CancelReason { get; set; }
         public DateTime PlacedAt { get; set; }
+        public DateTime? ScheduledFor { get; set; }
 
         public bool HasReview { get; set; }
         public List<ResponseOrderItemDto> Items { get; set; } = new();
@@ -37,10 +40,18 @@ namespace Leia.Application.Dtos.OrderDtos
         public Guid Id { get; set; }
         public Guid? MenuItemId { get; set; }
         public string Name { get; set; } = string.Empty;
+        public string? VariantName { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public decimal LineTotal { get; set; }
         public string? Notes { get; set; }
+        public List<ResponseOrderItemModifierDto> Modifiers { get; set; } = new();
+    }
+
+    public class ResponseOrderItemModifierDto
+    {
+        public string Name { get; set; } = string.Empty;
+        public decimal PriceDelta { get; set; }
     }
 
     public class ResponseOrderStatusHistoryDto

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Leia.Application.Dtos.Common;
+using Leia.Application.Dtos.CouponDtos;
 using Leia.Application.Dtos.OrderDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Helpers;
@@ -15,9 +16,13 @@ namespace Leia.Infrastructure.Services
     public class OrderService(
         AppDbContext db,
         INotificationService notificationService,
+        ICouponService couponService,
         UserManager<ApplicationUser> userManager,
         IMapper mapper) : IOrderService
     {
+        private const int ScheduleLeadMinutes = 30;
+        private const int ScheduleMaxDays = 3;
+
         public async Task<ResponseOrderDto> CreateAsync(Guid customerId, CreateOrderDto dto)
         {
             var restaurant = await db.Restaurants
@@ -35,8 +40,28 @@ namespace Leia.Infrastructure.Services
             if (dto.Type == OrderType.Pickup && !restaurant.AcceptsPickup)
                 throw new BadRequestException("This restaurant does not offer pickup.");
 
-            if (!IsOpenNow(restaurant))
+            var now = TimeHelper.NowLocal();
+            DateTime? scheduledFor = null;
+
+            if (dto.ScheduledFor.HasValue)
+            {
+                var at = DateTime.SpecifyKind(dto.ScheduledFor.Value, DateTimeKind.Unspecified);
+
+                if (at < now.AddMinutes(ScheduleLeadMinutes))
+                    throw new BadRequestException($"Scheduled orders must be placed at least {ScheduleLeadMinutes} minutes in advance.");
+
+                if (at > now.AddDays(ScheduleMaxDays))
+                    throw new BadRequestException($"Orders can be scheduled up to {ScheduleMaxDays} days in advance.");
+
+                if (!IsOpenAt(restaurant, at))
+                    throw new BadRequestException("The restaurant is closed at the selected time.");
+
+                scheduledFor = at;
+            }
+            else if (!IsOpenAt(restaurant, now))
+            {
                 throw new BadRequestException("This restaurant is closed right now.");
+            }
 
             string? deliveryAddress = null;
             if (dto.Type == OrderType.Delivery)
@@ -57,7 +82,10 @@ namespace Leia.Infrastructure.Services
 
             var ids = dto.Items.Select(i => i.MenuItemId).Distinct().ToList();
             var menuItems = await db.MenuItems
+                .Include(m => m.Variants)
+                .Include(m => m.ModifierGroups).ThenInclude(g => g.Options)
                 .Where(m => ids.Contains(m.Id) && m.RestaurantId == restaurant.Id)
+                .AsSplitQuery()
                 .ToListAsync();
 
             if (menuItems.Count != ids.Count)
@@ -76,20 +104,14 @@ namespace Leia.Infrastructure.Services
                 PaymentMethod = dto.PaymentMethod,
                 DeliveryAddress = deliveryAddress,
                 CustomerPhone = dto.CustomerPhone,
-                Notes = dto.Notes
+                Notes = dto.Notes,
+                ScheduledFor = scheduledFor
             };
 
             foreach (var line in dto.Items)
             {
                 var menuItem = menuItems.First(m => m.Id == line.MenuItemId);
-                order.Items.Add(new OrderItem
-                {
-                    MenuItemId = menuItem.Id,
-                    NameAtOrder = menuItem.Name,
-                    PriceAtOrder = menuItem.Price,
-                    Quantity = line.Quantity,
-                    Notes = line.Notes
-                });
+                order.Items.Add(BuildOrderItem(menuItem, line));
             }
 
             order.Subtotal = order.Items.Sum(i => i.PriceAtOrder * i.Quantity);
@@ -97,17 +119,52 @@ namespace Leia.Infrastructure.Services
             if (order.Subtotal < restaurant.MinOrderAmount)
                 throw new BadRequestException($"Minimum order amount is {restaurant.MinOrderAmount:0.00} AZN.");
 
+            AppliedCouponDto? applied = null;
+            if (!string.IsNullOrWhiteSpace(dto.CouponCode))
+            {
+                applied = await couponService.EvaluateAsync(customerId, restaurant.Id, dto.CouponCode, order.Subtotal);
+                order.Discount = applied.DiscountAmount;
+                order.CouponCode = applied.Code;
+            }
+
             order.DeliveryFee = dto.Type == OrderType.Delivery ? restaurant.DeliveryFee : 0;
-            order.Total = order.Subtotal + order.DeliveryFee;
+            order.Total = order.Subtotal - order.Discount + order.DeliveryFee;
 
             AddHistory(order, null, OrderStatus.Pending, customerId, null);
 
+            await using var tx = await db.Database.BeginTransactionAsync();
+
             db.Orders.Add(order);
+
+            if (applied != null)
+                db.CouponUsages.Add(new CouponUsage
+                {
+                    CouponId = applied.CouponId,
+                    UserId = customerId,
+                    Order = order,
+                    DiscountAmount = applied.DiscountAmount
+                });
+
             await db.SaveChangesAsync();
 
+            if (applied != null)
+            {
+                var updated = await db.Coupons
+                    .Where(c => c.Id == applied.CouponId && (c.UsageLimit == null || c.UsedCount < c.UsageLimit))
+                    .ExecuteUpdateAsync(s => s.SetProperty(c => c.UsedCount, c => c.UsedCount + 1));
+
+                if (updated == 0)
+                    throw new BadRequestException("This coupon has reached its usage limit.");
+            }
+
+            await tx.CommitAsync();
+
+            var message = scheduledFor.HasValue
+                ? $"New scheduled order {order.OrderNumber} for {scheduledFor:dd MMM HH:mm} - {order.Total:0.00} AZN."
+                : $"New order {order.OrderNumber} - {order.Total:0.00} AZN.";
+
             await notificationService.CreateAsync(
-                restaurant.OwnerId, "New order",
-                $"New order {order.OrderNumber} - {order.Total:0.00} AZN.",
+                restaurant.OwnerId, "New order", message,
                 NotificationType.NewOrder, order.Id);
 
             return await GetMappedAsync(order.Id);
@@ -149,6 +206,7 @@ namespace Leia.Infrastructure.Services
 
             AddHistory(order, previous, OrderStatus.Cancelled, customerId, dto.Reason);
             await db.SaveChangesAsync();
+            await ReleaseCouponAsync(order.Id);
 
             await notificationService.CreateAsync(
                 order.Restaurant.OwnerId, "Order cancelled",
@@ -184,6 +242,9 @@ namespace Leia.Infrastructure.Services
             AddHistory(order, previous, dto.Status, ownerId, dto.Comment);
             await db.SaveChangesAsync();
 
+            if (dto.Status == OrderStatus.Rejected)
+                await ReleaseCouponAsync(order.Id);
+
             await notificationService.CreateAsync(
                 order.CustomerId, "Order update",
                 $"Your order {order.OrderNumber} is now: {dto.Status}.",
@@ -212,6 +273,80 @@ namespace Leia.Infrastructure.Services
             return await PageAsync(Query(), filter);
         }
 
+        private static OrderItem BuildOrderItem(MenuItem menuItem, CreateOrderItemDto line)
+        {
+            MenuItemVariant? variant = null;
+
+            if (menuItem.Variants.Count > 0)
+            {
+                if (!line.VariantId.HasValue)
+                    throw new BadRequestException($"Please choose a variant for \"{menuItem.Name}\".");
+
+                variant = menuItem.Variants.FirstOrDefault(v => v.Id == line.VariantId.Value)
+                    ?? throw new BadRequestException("Selected variant is invalid.");
+
+                if (!variant.IsAvailable)
+                    throw new BadRequestException($"\"{variant.Name}\" is currently unavailable.");
+            }
+            else if (line.VariantId.HasValue)
+            {
+                throw new BadRequestException($"\"{menuItem.Name}\" has no variants.");
+            }
+
+            var selectedIds = line.ModifierOptionIds.Distinct().ToList();
+            var allOptions = menuItem.ModifierGroups.SelectMany(g => g.Options).ToList();
+
+            if (selectedIds.Any(id => allOptions.All(o => o.Id != id)))
+                throw new BadRequestException($"One or more options are invalid for \"{menuItem.Name}\".");
+
+            foreach (var group in menuItem.ModifierGroups)
+            {
+                var chosen = group.Options.Where(o => selectedIds.Contains(o.Id)).ToList();
+
+                if (chosen.Count < group.MinSelect || chosen.Count > group.MaxSelect)
+                    throw new BadRequestException(
+                        $"Please choose between {group.MinSelect} and {group.MaxSelect} options for \"{group.Name}\".");
+
+                var unavailable = chosen.FirstOrDefault(o => !o.IsAvailable);
+                if (unavailable != null)
+                    throw new BadRequestException($"\"{unavailable.Name}\" is currently unavailable.");
+            }
+
+            var extras = allOptions.Where(o => selectedIds.Contains(o.Id)).ToList();
+            var unitPrice = menuItem.Price + (variant?.PriceDelta ?? 0) + extras.Sum(o => o.PriceDelta);
+
+            var item = new OrderItem
+            {
+                MenuItemId = menuItem.Id,
+                NameAtOrder = menuItem.Name,
+                VariantName = variant?.Name,
+                PriceAtOrder = unitPrice,
+                Quantity = line.Quantity,
+                Notes = line.Notes
+            };
+
+            foreach (var extra in extras)
+                item.Modifiers.Add(new OrderItemModifier { Name = extra.Name, PriceDelta = extra.PriceDelta });
+
+            return item;
+        }
+
+        private async Task ReleaseCouponAsync(Guid orderId)
+        {
+            var usage = await db.CouponUsages.FirstOrDefaultAsync(u => u.OrderId == orderId);
+            if (usage == null)
+                return;
+
+            var couponId = usage.CouponId;
+
+            db.CouponUsages.Remove(usage);
+            await db.SaveChangesAsync();
+
+            await db.Coupons
+                .Where(c => c.Id == couponId && c.UsedCount > 0)
+                .ExecuteUpdateAsync(s => s.SetProperty(c => c.UsedCount, c => c.UsedCount - 1));
+        }
+
         private static void AddHistory(Order order, OrderStatus? from, OrderStatus to, Guid userId, string? comment)
         {
             order.History.Add(new OrderStatusHistory
@@ -227,9 +362,10 @@ namespace Leia.Infrastructure.Services
             .AsNoTracking()
             .Include(o => o.Customer)
             .Include(o => o.Restaurant)
-            .Include(o => o.Items)
+            .Include(o => o.Items).ThenInclude(i => i.Modifiers)
             .Include(o => o.History)
-            .Include(o => o.Review);
+            .Include(o => o.Review)
+            .AsSplitQuery();
 
         private async Task<ResponseOrderDto> GetMappedAsync(Guid id)
         {
@@ -285,10 +421,8 @@ namespace Leia.Infrastructure.Services
             _ => false
         };
 
-        private static bool IsOpenNow(Restaurant r)
+        private static bool IsOpenAt(Restaurant r, DateTime local)
         {
-            var local = TimeHelper.NowLocal();
-
             if (r.UnavailableDays.Any(u => u.Date.Date == local.Date))
                 return false;
 

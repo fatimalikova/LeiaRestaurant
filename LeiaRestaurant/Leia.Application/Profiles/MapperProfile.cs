@@ -1,12 +1,16 @@
 ﻿using AutoMapper;
 using Leia.Application.Dtos.AddressDtos;
+using Leia.Application.Dtos.AllergenDtos;
 using Leia.Application.Dtos.AppUserDtos;
+using Leia.Application.Dtos.CouponDtos;
 using Leia.Application.Dtos.CuisineDtos;
 using Leia.Application.Dtos.MenuCategoryDtos;
 using Leia.Application.Dtos.MenuItemDtos;
+using Leia.Application.Dtos.ModifierDtos;
 using Leia.Application.Dtos.NotificationDtos;
 using Leia.Application.Dtos.OrderDtos;
 using Leia.Application.Dtos.ProfileDtos;
+using Leia.Application.Dtos.ReservationDtos;
 using Leia.Application.Dtos.RestaurantDtos;
 using Leia.Application.Dtos.RestaurantImageDtos;
 using Leia.Application.Dtos.ReviewDtos;
@@ -15,9 +19,8 @@ using Leia.Application.Dtos.SystemSettingDtos;
 using Leia.Application.Dtos.TableDtos;
 using Leia.Application.Dtos.UnavailableDayDtos;
 using Leia.Application.Dtos.UserDtos;
+using Leia.Application.Dtos.VariantDtos;
 using Leia.Application.Dtos.WorkingHourDtos;
-using Leia.Application.Dtos.ReservationDtos;
-using Leia.Application.Dtos.TableDtos;
 using Leia.Domain.Entities;
 
 namespace Leia.Application.Profiles
@@ -68,15 +71,49 @@ namespace Leia.Application.Profiles
             CreateMap<UnavailableDay, ResponseUnavailableDayDto>();
             CreateMap<CreateUnavailableDayDto, UnavailableDay>();
 
+            CreateMap<RestaurantTable, ResponseTableDto>();
+            CreateMap<CreateTableDto, RestaurantTable>();
+            CreateMap<UpdateTableDto, RestaurantTable>();
+
+            CreateMap<Reservation, ResponseReservationDto>()
+                .ForMember(d => d.RestaurantName, opt => opt.MapFrom(s => s.Restaurant.Name))
+                .ForMember(d => d.CustomerName, opt => opt.MapFrom(s => s.Customer.FullName))
+                .ForMember(d => d.TableName, opt => opt.MapFrom(s => s.Table.Name));
+
             CreateMap<MenuCategory, ResponseMenuCategoryDto>()
                 .ForMember(d => d.Items, opt => opt.MapFrom(s => s.MenuItems));
             CreateMap<CreateMenuCategoryDto, MenuCategory>();
             CreateMap<UpdateMenuCategoryDto, MenuCategory>();
 
             CreateMap<MenuItem, ResponseMenuItemDto>()
-                .ForMember(d => d.CategoryName, opt => opt.MapFrom(s => s.Category != null ? s.Category.Name : string.Empty));
+                .ForMember(d => d.CategoryName, opt => opt.MapFrom(s => s.Category != null ? s.Category.Name : string.Empty))
+                .ForMember(d => d.Variants, opt => opt.MapFrom(s => s.Variants.OrderBy(v => v.SortOrder).ThenBy(v => v.Name)))
+                .ForMember(d => d.ModifierGroups, opt => opt.MapFrom(s => s.ModifierGroups.OrderBy(g => g.SortOrder)))
+                .ForMember(d => d.Allergens, opt => opt.MapFrom(s => s.Allergens.Select(a => a.Allergen)));
             CreateMap<CreateMenuItemDto, MenuItem>();
             CreateMap<UpdateMenuItemDto, MenuItem>();
+
+            CreateMap<MenuItemVariant, ResponseVariantDto>();
+            CreateMap<CreateVariantDto, MenuItemVariant>();
+            CreateMap<UpdateVariantDto, MenuItemVariant>();
+
+            CreateMap<ModifierGroup, ResponseModifierGroupDto>()
+                .ForMember(d => d.IsRequired, opt => opt.MapFrom(s => s.MinSelect > 0))
+                .ForMember(d => d.Options, opt => opt.MapFrom(s => s.Options.OrderBy(o => o.SortOrder)));
+            CreateMap<CreateModifierGroupDto, ModifierGroup>();
+            CreateMap<UpdateModifierGroupDto, ModifierGroup>();
+
+            CreateMap<ModifierOption, ResponseModifierOptionDto>();
+            CreateMap<CreateModifierOptionDto, ModifierOption>();
+            CreateMap<UpdateModifierOptionDto, ModifierOption>();
+
+            CreateMap<Allergen, ResponseAllergenDto>();
+            CreateMap<CreateAllergenDto, Allergen>();
+            CreateMap<UpdateAllergenDto, Allergen>();
+
+            CreateMap<Coupon, ResponseCouponDto>();
+            CreateMap<CreateCouponDto, Coupon>();
+            CreateMap<UpdateCouponDto, Coupon>();
 
             CreateMap<Order, ResponseOrderDto>()
                 .ForMember(d => d.CustomerName, opt => opt.MapFrom(s => s.Customer.FullName))
@@ -88,6 +125,8 @@ namespace Leia.Application.Profiles
                 .ForMember(d => d.Name, opt => opt.MapFrom(s => s.NameAtOrder))
                 .ForMember(d => d.Price, opt => opt.MapFrom(s => s.PriceAtOrder))
                 .ForMember(d => d.LineTotal, opt => opt.MapFrom(s => s.PriceAtOrder * s.Quantity));
+
+            CreateMap<OrderItemModifier, ResponseOrderItemModifierDto>();
 
             CreateMap<OrderStatusHistory, ResponseOrderStatusHistoryDto>()
                 .ForMember(d => d.ChangedAt, opt => opt.MapFrom(s => s.CreatedAt));
@@ -107,15 +146,6 @@ namespace Leia.Application.Profiles
 
             CreateMap<SystemSetting, ResponseSystemSettingDto>();
             CreateMap<UpdateSystemSettingDto, SystemSetting>();
-
-            CreateMap<RestaurantTable, ResponseTableDto>();
-            CreateMap<CreateTableDto, RestaurantTable>();
-            CreateMap<UpdateTableDto, RestaurantTable>();
-
-            CreateMap<Reservation, ResponseReservationDto>()
-                .ForMember(d => d.RestaurantName, opt => opt.MapFrom(s => s.Restaurant.Name))
-                .ForMember(d => d.CustomerName, opt => opt.MapFrom(s => s.Customer.FullName))
-                .ForMember(d => d.TableName, opt => opt.MapFrom(s => s.Table.Name));
         }
     }
 }

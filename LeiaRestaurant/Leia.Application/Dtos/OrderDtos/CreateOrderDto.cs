@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Leia.Application.Helpers;
 using Leia.Domain.Enums;
 
 namespace Leia.Application.Dtos.OrderDtos
@@ -12,12 +13,16 @@ namespace Leia.Application.Dtos.OrderDtos
         public string? DeliveryAddress { get; set; }
         public string CustomerPhone { get; set; } = string.Empty;
         public string? Notes { get; set; }
+        public string? CouponCode { get; set; }
+        public DateTime? ScheduledFor { get; set; }
         public List<CreateOrderItemDto> Items { get; set; } = new();
     }
 
     public class CreateOrderItemDto
     {
         public Guid MenuItemId { get; set; }
+        public Guid? VariantId { get; set; }
+        public List<Guid> ModifierOptionIds { get; set; } = new();
         public int Quantity { get; set; }
         public string? Notes { get; set; }
     }
@@ -51,6 +56,14 @@ namespace Leia.Application.Dtos.OrderDtos
                 .MaximumLength(500).WithMessage("Notes cannot exceed 500 characters.")
                 .When(x => x.Notes != null);
 
+            RuleFor(x => x.CouponCode)
+                .MaximumLength(30).WithMessage("Coupon code cannot exceed 30 characters.")
+                .When(x => x.CouponCode != null);
+
+            RuleFor(x => x.ScheduledFor)
+                .Must(d => d!.Value > TimeHelper.NowLocal()).WithMessage("Scheduled time must be in the future.")
+                .When(x => x.ScheduledFor.HasValue);
+
             RuleFor(x => x.Items)
                 .NotEmpty().WithMessage("Order must contain at least one item.");
 
@@ -64,6 +77,10 @@ namespace Leia.Application.Dtos.OrderDtos
         {
             RuleFor(x => x.MenuItemId)
                 .NotEmpty().WithMessage("MenuItemId is required.");
+
+            RuleFor(x => x.ModifierOptionIds)
+                .NotNull().WithMessage("ModifierOptionIds cannot be null.")
+                .Must(x => x.Count <= 20).WithMessage("Too many options selected.");
 
             RuleFor(x => x.Quantity)
                 .InclusiveBetween(1, 50).WithMessage("Quantity must be between 1 and 50.");
