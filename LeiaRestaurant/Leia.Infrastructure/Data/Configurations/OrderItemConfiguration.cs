@@ -1,9 +1,6 @@
 ﻿using Leia.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Leia.Infrastructure.Data.Configurations
 {
@@ -14,6 +11,7 @@ namespace Leia.Infrastructure.Data.Configurations
             builder.HasKey(i => i.Id);
 
             builder.Property(i => i.NameAtOrder).IsRequired().HasMaxLength(150);
+            builder.Property(i => i.VariantName).HasMaxLength(50);
             builder.Property(i => i.PriceAtOrder).HasPrecision(18, 2);
             builder.Property(i => i.Notes).HasMaxLength(300);
 
@@ -22,7 +20,6 @@ namespace Leia.Infrastructure.Data.Configurations
                 .HasForeignKey(i => i.OrderId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-      
             builder.HasOne(i => i.MenuItem)
                 .WithMany()
                 .HasForeignKey(i => i.MenuItemId)

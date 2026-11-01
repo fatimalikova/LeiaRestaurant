@@ -1,13 +1,10 @@
 ﻿using Leia.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Leia.Infrastructure.Data.Configurations
 {
-     public class OrderConfiguration : IEntityTypeConfiguration<Order>
+    public class OrderConfiguration : IEntityTypeConfiguration<Order>
     {
         public void Configure(EntityTypeBuilder<Order> builder)
         {
@@ -20,8 +17,10 @@ namespace Leia.Infrastructure.Data.Configurations
             builder.Property(o => o.DeliveryAddress).HasMaxLength(300);
             builder.Property(o => o.Notes).HasMaxLength(500);
             builder.Property(o => o.CancelReason).HasMaxLength(500);
+            builder.Property(o => o.CouponCode).HasMaxLength(30);
 
             builder.Property(o => o.Subtotal).HasPrecision(18, 2);
+            builder.Property(o => o.Discount).HasPrecision(18, 2);
             builder.Property(o => o.DeliveryFee).HasPrecision(18, 2);
             builder.Property(o => o.Total).HasPrecision(18, 2);
 
