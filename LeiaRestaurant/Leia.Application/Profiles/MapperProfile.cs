@@ -9,6 +9,7 @@ using Leia.Application.Dtos.MenuItemDtos;
 using Leia.Application.Dtos.ModifierDtos;
 using Leia.Application.Dtos.NotificationDtos;
 using Leia.Application.Dtos.OrderDtos;
+using Leia.Application.Dtos.PaymentDtos;
 using Leia.Application.Dtos.ProfileDtos;
 using Leia.Application.Dtos.ReservationDtos;
 using Leia.Application.Dtos.RestaurantDtos;
@@ -146,6 +147,7 @@ namespace Leia.Application.Profiles
 
             CreateMap<SystemSetting, ResponseSystemSettingDto>();
             CreateMap<UpdateSystemSettingDto, SystemSetting>();
+            CreateMap<Payment, ResponsePaymentDto>();
         }
     }
 }

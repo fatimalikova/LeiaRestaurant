@@ -35,6 +35,7 @@ namespace Leia.Infrastructure.Data
         public DbSet<Favorite> Favorites { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<SystemSetting> SystemSettings { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)

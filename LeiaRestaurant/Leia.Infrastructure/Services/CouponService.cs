@@ -80,7 +80,21 @@ namespace Leia.Infrastructure.Services
             db.Coupons.Remove(coupon);
             await db.SaveChangesAsync();
         }
+        public async Task ReleaseForOrderAsync(Guid orderId)
+        {
+            var usage = await db.CouponUsages.FirstOrDefaultAsync(u => u.OrderId == orderId);
+            if (usage == null)
+                return;
 
+            var couponId = usage.CouponId;
+
+            db.CouponUsages.Remove(usage);
+            await db.SaveChangesAsync();
+
+            await db.Coupons
+                .Where(c => c.Id == couponId && c.UsedCount > 0)
+                .ExecuteUpdateAsync(s => s.SetProperty(c => c.UsedCount, c => c.UsedCount - 1));
+        }
         public async Task<AppliedCouponDto> EvaluateAsync(Guid customerId, Guid restaurantId, string code, decimal subtotal)
         {
             var normalized = Normalize(code);

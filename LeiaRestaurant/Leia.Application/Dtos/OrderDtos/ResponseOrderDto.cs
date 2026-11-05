@@ -17,6 +17,7 @@ namespace Leia.Application.Dtos.OrderDtos
         public OrderType Type { get; set; }
         public OrderStatus Status { get; set; }
         public PaymentMethod PaymentMethod { get; set; }
+        public PaymentStatus PaymentStatus { get; set; }
 
         public decimal Subtotal { get; set; }
         public decimal Discount { get; set; }

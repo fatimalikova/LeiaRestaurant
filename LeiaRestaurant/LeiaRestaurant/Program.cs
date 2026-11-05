@@ -1,4 +1,5 @@
 using Leia.Api;
+using Leia.Api.Hubs;
 using Leia.Api.Middlewares;
 using Leia.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -32,5 +33,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHub<NotificationHub>("/hubs/notifications");
 app.Run();

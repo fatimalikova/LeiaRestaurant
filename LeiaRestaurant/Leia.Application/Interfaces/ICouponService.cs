@@ -10,5 +10,6 @@ namespace Leia.Application.Interfaces
         Task<ResponseCouponDto> UpdateAsync(Guid userId, bool isAdmin, Guid id, UpdateCouponDto dto);
         Task DeleteAsync(Guid userId, bool isAdmin, Guid id);
         Task<AppliedCouponDto> EvaluateAsync(Guid customerId, Guid restaurantId, string code, decimal subtotal);
+        Task ReleaseForOrderAsync(Guid orderId);
     }
 }

@@ -7,10 +7,15 @@ using Leia.Domain.Entities;
 using Leia.Domain.Enums;
 using Leia.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Leia.Infrastructure.Services
 {
-    public class NotificationService(AppDbContext db, IMapper mapper) : INotificationService
+    public class NotificationService(
+        AppDbContext db,
+        IMapper mapper,
+        IRealtimeNotifier realtimeNotifier,
+        ILogger<NotificationService> logger) : INotificationService
     {
         public async Task<PagedResultDto<ResponseNotificationDto>> GetMyAsync(Guid userId, PaginationDto dto)
         {
@@ -56,15 +61,26 @@ namespace Leia.Infrastructure.Services
 
         public async Task CreateAsync(Guid userId, string title, string message, NotificationType type, Guid? relatedEntityId = null)
         {
-            db.Notifications.Add(new Notification
+            var notification = new Notification
             {
                 UserId = userId,
                 Title = title,
                 Message = message,
                 Type = type,
                 RelatedEntityId = relatedEntityId
-            });
+            };
+
+            db.Notifications.Add(notification);
             await db.SaveChangesAsync();
+
+            try
+            {
+                await realtimeNotifier.SendNotificationAsync(userId, mapper.Map<ResponseNotificationDto>(notification));
+            }
+            catch (Exception ex)
+            {
+                logger.LogWarning(ex, "Realtime notification failed for user {UserId}", userId);
+            }
         }
     }
 }

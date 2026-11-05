@@ -16,6 +16,7 @@ public class Order : BaseEntity
     public OrderType Type { get; set; }
     public OrderStatus Status { get; set; } = OrderStatus.Pending;
     public PaymentMethod PaymentMethod { get; set; }
+    public PaymentStatus PaymentStatus { get; set; } = PaymentStatus.NotRequired;
 
     public decimal Subtotal { get; set; }
     public decimal Discount { get; set; }

@@ -14,6 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Leia.Api.BackgroundServices;
+using Leia.Api.Hubs;
 using System.Text;
 
 namespace Leia.Api
@@ -157,6 +159,12 @@ namespace Leia.Api
             services.AddScoped<IMenuOptionService, MenuOptionService>();
             services.AddScoped<IAllergenService, AllergenService>();
             services.AddScoped<ICouponService, CouponService>();
+            services.AddScoped<IPaymentGateway, FakePaymentGateway>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IOrderTimeoutService, OrderTimeoutService>();
+            services.AddSingleton<IRealtimeNotifier, SignalRNotifier>();
+            services.AddSignalR();
+            services.AddHostedService<OrderTimeoutWorker>();
             return services;
         }
     }

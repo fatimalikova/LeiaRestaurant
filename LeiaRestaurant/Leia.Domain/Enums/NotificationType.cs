@@ -10,5 +10,6 @@ public enum NotificationType
     ReviewReplied = 5,
     ReservationCreated = 6,
     ReservationStatusChanged = 7,
-    ReservationCancelled = 8
+    ReservationCancelled = 8,
+    PaymentUpdated = 9
 }

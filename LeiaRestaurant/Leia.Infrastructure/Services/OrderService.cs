@@ -17,6 +17,7 @@ namespace Leia.Infrastructure.Services
         AppDbContext db,
         INotificationService notificationService,
         ICouponService couponService,
+        IPaymentService paymentService,
         UserManager<ApplicationUser> userManager,
         IMapper mapper) : IOrderService
     {
@@ -102,6 +103,7 @@ namespace Leia.Infrastructure.Services
                 RestaurantId = restaurant.Id,
                 Type = dto.Type,
                 PaymentMethod = dto.PaymentMethod,
+                PaymentStatus = dto.PaymentMethod == PaymentMethod.Card ? PaymentStatus.Pending : PaymentStatus.NotRequired,
                 DeliveryAddress = deliveryAddress,
                 CustomerPhone = dto.CustomerPhone,
                 Notes = dto.Notes,
@@ -159,13 +161,16 @@ namespace Leia.Infrastructure.Services
 
             await tx.CommitAsync();
 
-            var message = scheduledFor.HasValue
-                ? $"New scheduled order {order.OrderNumber} for {scheduledFor:dd MMM HH:mm} - {order.Total:0.00} AZN."
-                : $"New order {order.OrderNumber} - {order.Total:0.00} AZN.";
+            if (order.PaymentMethod == PaymentMethod.Cash)
+            {
+                var message = scheduledFor.HasValue
+                    ? $"New scheduled order {order.OrderNumber} for {scheduledFor:dd MMM HH:mm} - {order.Total:0.00} AZN."
+                    : $"New order {order.OrderNumber} - {order.Total:0.00} AZN.";
 
-            await notificationService.CreateAsync(
-                restaurant.OwnerId, "New order", message,
-                NotificationType.NewOrder, order.Id);
+                await notificationService.CreateAsync(
+                    restaurant.OwnerId, "New order", message,
+                    NotificationType.NewOrder, order.Id);
+            }
 
             return await GetMappedAsync(order.Id);
         }
@@ -199,6 +204,8 @@ namespace Leia.Infrastructure.Services
                 throw new BadRequestException("This order can no longer be cancelled.");
             }
 
+            var visibleToRestaurant = order.PaymentMethod == PaymentMethod.Cash || order.PaymentStatus == PaymentStatus.Paid;
+
             var previous = order.Status;
             order.Status = OrderStatus.Cancelled;
             order.CancelReason = dto.Reason;
@@ -206,12 +213,15 @@ namespace Leia.Infrastructure.Services
 
             AddHistory(order, previous, OrderStatus.Cancelled, customerId, dto.Reason);
             await db.SaveChangesAsync();
-            await ReleaseCouponAsync(order.Id);
 
-            await notificationService.CreateAsync(
-                order.Restaurant.OwnerId, "Order cancelled",
-                $"Order {order.OrderNumber} was cancelled by the customer.",
-                NotificationType.OrderCancelled, order.Id);
+            await couponService.ReleaseForOrderAsync(order.Id);
+            await paymentService.RefundIfPaidAsync(order.Id, "Order cancelled.");
+
+            if (visibleToRestaurant)
+                await notificationService.CreateAsync(
+                    order.Restaurant.OwnerId, "Order cancelled",
+                    $"Order {order.OrderNumber} was cancelled by the customer.",
+                    NotificationType.OrderCancelled, order.Id);
 
             return await GetMappedAsync(order.Id);
         }
@@ -219,7 +229,13 @@ namespace Leia.Infrastructure.Services
         public async Task<PagedResultDto<ResponseOrderDto>> GetRestaurantOrdersAsync(Guid ownerId, OrderFilterDto filter)
         {
             var restaurant = await GetRestaurantAsync(ownerId);
-            return await PageAsync(Query().Where(o => o.RestaurantId == restaurant.Id), filter);
+
+            var query = Query().Where(o => o.RestaurantId == restaurant.Id
+                && (o.PaymentMethod == PaymentMethod.Cash
+                    || o.PaymentStatus == PaymentStatus.Paid
+                    || o.PaymentStatus == PaymentStatus.Refunded));
+
+            return await PageAsync(query, filter);
         }
 
         public async Task<ResponseOrderDto> UpdateStatusAsync(Guid ownerId, Guid id, UpdateOrderStatusDto dto)
@@ -228,6 +244,9 @@ namespace Leia.Infrastructure.Services
 
             var order = await db.Orders.FirstOrDefaultAsync(o => o.Id == id && o.RestaurantId == restaurant.Id)
                 ?? throw new NotFoundException("Order not found.");
+
+            if (order.PaymentMethod == PaymentMethod.Card && order.PaymentStatus != PaymentStatus.Paid)
+                throw new BadRequestException("This order is waiting for the customer's payment.");
 
             if (!IsTransitionAllowed(order, dto.Status))
                 throw new BadRequestException($"Order cannot move from {order.Status} to {dto.Status}.");
@@ -243,7 +262,10 @@ namespace Leia.Infrastructure.Services
             await db.SaveChangesAsync();
 
             if (dto.Status == OrderStatus.Rejected)
-                await ReleaseCouponAsync(order.Id);
+            {
+                await couponService.ReleaseForOrderAsync(order.Id);
+                await paymentService.RefundIfPaidAsync(order.Id, "Order was declined by the restaurant.");
+            }
 
             await notificationService.CreateAsync(
                 order.CustomerId, "Order update",
@@ -307,9 +329,9 @@ namespace Leia.Infrastructure.Services
                     throw new BadRequestException(
                         $"Please choose between {group.MinSelect} and {group.MaxSelect} options for \"{group.Name}\".");
 
-                var unavailable = chosen.FirstOrDefault(o => !o.IsAvailable);
-                if (unavailable != null)
-                    throw new BadRequestException($"\"{unavailable.Name}\" is currently unavailable.");
+                var unavailableOption = chosen.FirstOrDefault(o => !o.IsAvailable);
+                if (unavailableOption != null)
+                    throw new BadRequestException($"\"{unavailableOption.Name}\" is currently unavailable.");
             }
 
             var extras = allOptions.Where(o => selectedIds.Contains(o.Id)).ToList();
@@ -329,22 +351,6 @@ namespace Leia.Infrastructure.Services
                 item.Modifiers.Add(new OrderItemModifier { Name = extra.Name, PriceDelta = extra.PriceDelta });
 
             return item;
-        }
-
-        private async Task ReleaseCouponAsync(Guid orderId)
-        {
-            var usage = await db.CouponUsages.FirstOrDefaultAsync(u => u.OrderId == orderId);
-            if (usage == null)
-                return;
-
-            var couponId = usage.CouponId;
-
-            db.CouponUsages.Remove(usage);
-            await db.SaveChangesAsync();
-
-            await db.Coupons
-                .Where(c => c.Id == couponId && c.UsedCount > 0)
-                .ExecuteUpdateAsync(s => s.SetProperty(c => c.UsedCount, c => c.UsedCount - 1));
         }
 
         private static void AddHistory(Order order, OrderStatus? from, OrderStatus to, Guid userId, string? comment)
