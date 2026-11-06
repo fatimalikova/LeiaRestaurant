@@ -22,6 +22,14 @@ namespace Leia.Api.Controllers
             return Ok(ResponseModelHelper.SuccessResult(result));
         }
 
+        [HttpGet("search")]
+        [AllowAnonymous]
+        public async Task<IActionResult> Search([FromQuery] MenuSearchDto dto)
+        {
+            var result = await menuItemService.SearchAsync(dto);
+            return Ok(ResponseModelHelper.SuccessResult(result));
+        }
+
         [HttpGet("{id:guid}")]
         [AllowAnonymous]
         public async Task<IActionResult> GetById(Guid id)

@@ -165,6 +165,8 @@ namespace Leia.Api
             services.AddSingleton<IRealtimeNotifier, SignalRNotifier>();
             services.AddSignalR();
             services.AddHostedService<OrderTimeoutWorker>();
+
+            services.AddScoped<IDashboardService, DashboardService>();
             return services;
         }
     }

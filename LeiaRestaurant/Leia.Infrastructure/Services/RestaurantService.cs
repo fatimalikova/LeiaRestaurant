@@ -30,7 +30,9 @@ namespace Leia.Infrastructure.Services
             if (!string.IsNullOrWhiteSpace(filter.Search))
             {
                 var search = filter.Search.Trim();
-                query = query.Where(r => r.Name.Contains(search) || r.Address.Contains(search));
+                query = query.Where(r => r.Name.Contains(search)
+                    || r.Address.Contains(search)
+                    || r.MenuItems.Any(m => m.IsActive && !m.DeactivatedByAdmin && m.Name.Contains(search)));
             }
 
             if (filter.CuisineId is Guid cuisineId)

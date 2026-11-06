@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Leia.Application.Dtos.Common;
 using Leia.Application.Dtos.MenuItemDtos;
 using Leia.Application.Exceptions;
 using Leia.Application.Interfaces;
 using Leia.Domain.Entities;
+using Leia.Domain.Enums;
 using Leia.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -43,7 +45,44 @@ namespace Leia.Infrastructure.Services
 
             return mapper.Map<ResponseMenuItemDto>(item);
         }
+        public async Task<PagedResultDto<ResponseMenuSearchItemDto>> SearchAsync(MenuSearchDto dto)
+        {
+            var term = dto.Query.Trim();
 
+            var query = db.MenuItems.AsNoTracking()
+                .Where(i => i.IsActive && i.IsAvailable && !i.DeactivatedByAdmin
+                    && i.Category.IsActive
+                    && i.Restaurant.Status == RestaurantStatus.Approved && i.Restaurant.IsActive
+                    && (i.Name.Contains(term) || (i.Description != null && i.Description.Contains(term))));
+
+            var total = await query.CountAsync();
+
+            var items = await query
+                .OrderBy(i => i.Name)
+                .Skip((dto.Page - 1) * dto.PageSize)
+                .Take(dto.PageSize)
+                .Select(i => new ResponseMenuSearchItemDto
+                {
+                    Id = i.Id,
+                    Name = i.Name,
+                    Description = i.Description,
+                    Price = i.Price,
+                    ImageUrl = i.ImageUrl,
+                    CategoryName = i.Category.Name,
+                    RestaurantId = i.RestaurantId,
+                    RestaurantName = i.Restaurant.Name,
+                    RestaurantLogoUrl = i.Restaurant.LogoUrl
+                })
+                .ToListAsync();
+
+            return new PagedResultDto<ResponseMenuSearchItemDto>
+            {
+                Items = items,
+                TotalCount = total,
+                Page = dto.Page,
+                PageSize = dto.PageSize
+            };
+        }
         public async Task<ResponseMenuItemDto> CreateAsync(Guid ownerId, CreateMenuItemDto dto)
         {
             var restaurant = await GetRestaurantAsync(ownerId);
