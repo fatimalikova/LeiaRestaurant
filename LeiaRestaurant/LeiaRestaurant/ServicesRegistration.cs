@@ -1,8 +1,11 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
+using Leia.Api.BackgroundServices;
+using Leia.Api.Hubs;
 using Leia.Application.Dtos.UserDtos;
 using Leia.Application.Helpers;
 using Leia.Application.Interfaces;
+using Leia.Application.Models;
 using Leia.Application.Profiles;
 using Leia.Application.Settings;
 using Leia.Domain.Entities;
@@ -14,15 +17,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Leia.Api.BackgroundServices;
-using Leia.Api.Hubs;
 using System.Text;
+using System.Threading.RateLimiting;
 
 namespace Leia.Api
 {
     public static class ServicesRegistration
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+        public static IServiceCollection AddApplicationServices(
+            this IServiceCollection services,
+            IConfiguration configuration,
+            IHostEnvironment environment)
         {
             services.AddControllers();
 
@@ -55,6 +60,46 @@ namespace Leia.Api
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials());
+            });
+
+            services.AddRateLimiter(options =>
+            {
+                options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+
+                options.OnRejected = async (context, cancellationToken) =>
+                {
+                    context.HttpContext.Response.StatusCode = StatusCodes.Status429TooManyRequests;
+
+                    if (context.Lease.TryGetMetadata(MetadataName.RetryAfter, out var retryAfter))
+                        context.HttpContext.Response.Headers.RetryAfter = ((int)retryAfter.TotalSeconds).ToString();
+
+                    await context.HttpContext.Response.WriteAsJsonAsync(new ResponseModel<object>
+                    {
+                        Success = false,
+                        Errors = new List<string> { "Too many requests. Please try again later." },
+                        StatusCode = StatusCodes.Status429TooManyRequests
+                    }, cancellationToken);
+                };
+
+                options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(http =>
+                    RateLimitPartition.GetFixedWindowLimiter(
+                        $"global:{http.Connection.RemoteIpAddress}",
+                        _ => new FixedWindowRateLimiterOptions
+                        {
+                            PermitLimit = 300,
+                            Window = TimeSpan.FromMinutes(1),
+                            QueueLimit = 0
+                        }));
+
+                options.AddPolicy("auth", http =>
+                    RateLimitPartition.GetFixedWindowLimiter(
+                        $"auth:{http.Connection.RemoteIpAddress}",
+                        _ => new FixedWindowRateLimiterOptions
+                        {
+                            PermitLimit = 10,
+                            Window = TimeSpan.FromMinutes(1),
+                            QueueLimit = 0
+                        }));
             });
 
             services.AddEndpointsApiExplorer();
@@ -90,6 +135,9 @@ namespace Leia.Api
                 options.Password.RequiredLength = 8;
                 options.Password.RequireNonAlphanumeric = false;
                 options.User.RequireUniqueEmail = true;
+                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
             })
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
@@ -133,7 +181,17 @@ namespace Leia.Api
                 };
             });
 
+            services.AddHealthChecks().AddDbContextCheck<AppDbContext>();
+
             services.AddAutoMapper(typeof(MapperProfile).Assembly);
+
+            var allowFakePayments = environment.IsDevelopment()
+                || (bool.TryParse(configuration["Payments:AllowFake"], out var allow) && allow);
+
+            if (!allowFakePayments)
+                throw new InvalidOperationException("No payment gateway is configured. Register a real gateway or set Payments:AllowFake=true.");
+
+            services.AddScoped<IPaymentGateway, FakePaymentGateway>();
 
             services.AddScoped<IJwtService, JwtService>();
             services.AddScoped<IEmailService, EmailService>();
@@ -146,7 +204,12 @@ namespace Leia.Api
             services.AddScoped<IUnavailableDayService, UnavailableDayService>();
             services.AddScoped<IMenuCategoryService, MenuCategoryService>();
             services.AddScoped<IMenuItemService, MenuItemService>();
+            services.AddScoped<IMenuOptionService, MenuOptionService>();
+            services.AddScoped<IAllergenService, AllergenService>();
+            services.AddScoped<ICouponService, CouponService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IOrderTimeoutService, OrderTimeoutService>();
             services.AddScoped<IReviewService, ReviewService>();
             services.AddScoped<INotificationService, NotificationService>();
             services.AddScoped<ISliderService, SliderService>();
@@ -156,17 +219,12 @@ namespace Leia.Api
             services.AddScoped<IFavoriteService, FavoriteService>();
             services.AddScoped<ITableService, TableService>();
             services.AddScoped<IReservationService, ReservationService>();
-            services.AddScoped<IMenuOptionService, MenuOptionService>();
-            services.AddScoped<IAllergenService, AllergenService>();
-            services.AddScoped<ICouponService, CouponService>();
-            services.AddScoped<IPaymentGateway, FakePaymentGateway>();
-            services.AddScoped<IPaymentService, PaymentService>();
-            services.AddScoped<IOrderTimeoutService, OrderTimeoutService>();
+            services.AddScoped<IDashboardService, DashboardService>();
+
             services.AddSingleton<IRealtimeNotifier, SignalRNotifier>();
             services.AddSignalR();
             services.AddHostedService<OrderTimeoutWorker>();
 
-            services.AddScoped<IDashboardService, DashboardService>();
             return services;
         }
     }

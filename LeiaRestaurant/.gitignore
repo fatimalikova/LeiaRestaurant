@@ -9,3 +9,10 @@ packages/
 appsettings.Development.json
 secrets.json
 .env
+.env.*
+logs/
+*.db
+*.bak
+.idea/
+.vscode/
+*.DotSettings.user

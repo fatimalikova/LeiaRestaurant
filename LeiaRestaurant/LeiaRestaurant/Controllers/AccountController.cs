@@ -5,6 +5,7 @@ using Leia.Application.Helpers;
 using Leia.Application.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace Leia.Api.Controllers
 {
@@ -15,6 +16,7 @@ namespace Leia.Api.Controllers
         IProfileService profileService) : ControllerBase
     {
         [HttpPost("register/customer")]
+        [EnableRateLimiting("auth")]
         public async Task<IActionResult> RegisterCustomer([FromBody] RegisterDto dto)
         {
             await accountService.RegisterAsync(dto, "Customer");
@@ -22,6 +24,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("register/restaurant")]
+        [EnableRateLimiting("auth")]
         public async Task<IActionResult> RegisterRestaurant([FromBody] RegisterDto dto)
         {
             await accountService.RegisterAsync(dto, "RestaurantOwner");
@@ -29,6 +32,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("login/customer")]
+        [EnableRateLimiting("auth")]
         public async Task<IActionResult> LoginCustomer([FromBody] LoginDto dto)
         {
             var result = await accountService.LoginAsync(dto, "Customer");
@@ -36,6 +40,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("login/restaurant")]
+        [EnableRateLimiting("auth")]
         public async Task<IActionResult> LoginRestaurant([FromBody] LoginDto dto)
         {
             var result = await accountService.LoginAsync(dto, "RestaurantOwner");
@@ -43,6 +48,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("login/admin")]
+        [EnableRateLimiting("auth")]
         public async Task<IActionResult> LoginAdmin([FromBody] LoginDto dto)
         {
             var result = await accountService.LoginAsync(dto, "Admin");
@@ -50,6 +56,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("verify-2fa")]
+        [EnableRateLimiting("auth")]
         public async Task<IActionResult> Verify2FA([FromBody] Verify2FADto dto)
         {
             var result = await accountService.Verify2FAAsync(dto);
@@ -64,6 +71,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("forgot-password")]
+        [EnableRateLimiting("auth")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
         {
             await accountService.ForgotPasswordAsync(dto);
@@ -71,6 +79,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("reset-password")]
+        [EnableRateLimiting("auth")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
         {
             await accountService.ResetPasswordAsync(dto);

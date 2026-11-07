@@ -52,10 +52,22 @@ namespace Leia.Infrastructure.Services
 
         public async Task<AuthResponseDto> LoginAsync(LoginDto dto, string requiredRole)
         {
-            var user = await userManager.FindByEmailAsync(dto.Login) ?? await userManager.FindByNameAsync(dto.Login);
+            var user = await userManager.FindByEmailAsync(dto.Login)
+                ?? await userManager.FindByNameAsync(dto.Login);
 
-            if (user == null || !await userManager.CheckPasswordAsync(user, dto.Password))
+            if (user == null)
                 throw new UnauthorizedException("Invalid login or password.");
+
+            if (await userManager.IsLockedOutAsync(user))
+                throw new ForbiddenException("Too many failed attempts. The account is locked for 15 minutes.");
+
+            if (!await userManager.CheckPasswordAsync(user, dto.Password))
+            {
+                await userManager.AccessFailedAsync(user);
+                throw new UnauthorizedException("Invalid login or password.");
+            }
+
+            await userManager.ResetAccessFailedCountAsync(user);
 
             var requireConfirmation = bool.TryParse(config["Auth:RequireEmailConfirmation"], out var confirm) && confirm;
             if (requireConfirmation && !user.EmailConfirmed)
@@ -68,8 +80,8 @@ namespace Leia.Infrastructure.Services
             if (!roles.Contains(requiredRole))
                 throw new BadRequestException($"This account cannot log in from the {requiredRole} portal.");
 
-            var requireTwoFactor = bool.TryParse(config["Auth:RequireTwoFactor"], out var flag) && flag;
-            if (requireTwoFactor)
+            var twoFactorRoles = config.GetSection("Auth:TwoFactorRoles").Get<string[]>() ?? Array.Empty<string>();
+            if (roles.Any(r => twoFactorRoles.Contains(r)))
             {
                 var code = await userManager.GenerateUserTokenAsync(user, TokenOptions.DefaultEmailProvider, TwoFactorPurpose);
                 await emailService.SendEmailAsync(user.Email!, "2FA Code",
@@ -118,20 +130,11 @@ namespace Leia.Infrastructure.Services
             return await BuildAuthResponseAsync(user);
         }
 
-        public async Task ConfirmEmailAsync(EmailConfirmDto dto)
-        {
-            var user = await userManager.FindByIdAsync(dto.UserId.ToString())
-                ?? throw new NotFoundException("User not found.");
-
-            var result = await userManager.ConfirmEmailAsync(user, dto.Token);
-            if (!result.Succeeded)
-                throw new BadRequestException(string.Join(" ", result.Errors.Select(e => e.Description)));
-        }
-
         public async Task ForgotPasswordAsync(ForgotPasswordDto dto)
         {
-            var user = await userManager.FindByEmailAsync(dto.Email)
-                ?? throw new NotFoundException("User not found.");
+            var user = await userManager.FindByEmailAsync(dto.Email);
+            if (user == null)
+                return;
 
             var token = await userManager.GeneratePasswordResetTokenAsync(user);
 
@@ -141,10 +144,20 @@ namespace Leia.Infrastructure.Services
                 $"<p>Paste this token into the reset-password endpoint.</p>");
         }
 
+        public async Task ConfirmEmailAsync(EmailConfirmDto dto)
+        {
+            var user = await userManager.FindByIdAsync(dto.UserId.ToString())
+                ?? throw new NotFoundException("User not found.");
+
+            var result = await userManager.ConfirmEmailAsync(user, dto.Token.Replace(" ", "+"));
+            if (!result.Succeeded)
+                throw new BadRequestException("Confirmation link is invalid or expired.");
+        }
+
         public async Task ResetPasswordAsync(ResetPasswordDto dto)
         {
             var user = await userManager.FindByEmailAsync(dto.Email)
-                ?? throw new NotFoundException("User not found.");
+     ?? throw new BadRequestException("Invalid or expired reset token.");
 
             var result = await userManager.ResetPasswordAsync(user, dto.Token, dto.NewPassword);
             if (!result.Succeeded)
