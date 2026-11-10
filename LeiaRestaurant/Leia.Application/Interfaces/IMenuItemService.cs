@@ -13,6 +13,7 @@ namespace Leia.Application.Interfaces
         Task<ResponseMenuItemDto> UpdateAsync(Guid ownerId, Guid id, UpdateMenuItemDto dto);
         Task SetAvailabilityAsync(Guid ownerId, Guid id, bool isAvailable);
         Task DeleteAsync(Guid ownerId, Guid id);
+        Task<ResponseMenuItemDto> RestoreAsync(Guid id);
         Task SetDeactivatedByAdminAsync(Guid id, bool deactivated);
     }
 }

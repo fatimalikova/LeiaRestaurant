@@ -1,9 +1,6 @@
 ﻿using Leia.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Leia.Infrastructure.Data.Configurations
 {
@@ -14,6 +11,8 @@ namespace Leia.Infrastructure.Data.Configurations
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Name).IsRequired().HasMaxLength(100);
+
+            builder.HasQueryFilter(c => !c.IsDeleted);
 
             builder.HasOne(c => c.Restaurant)
                 .WithMany(r => r.MenuCategories)

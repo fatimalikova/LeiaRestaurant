@@ -50,5 +50,13 @@ namespace Leia.Api.Controllers
             await menuCategoryService.DeleteAsync(User.GetUserId(), id);
             return Ok(ResponseModelHelper.SuccessResult("Deleted."));
         }
+
+        [HttpPut("{id:guid}/restore")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Restore(Guid id)
+        {
+            var result = await menuCategoryService.RestoreAsync(id);
+            return Ok(ResponseModelHelper.SuccessResult(result));
+        }
     }
 }

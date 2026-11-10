@@ -9,5 +9,6 @@ namespace Leia.Application.Interfaces
         Task<ResponseMenuCategoryDto> CreateAsync(Guid ownerId, CreateMenuCategoryDto dto);
         Task<ResponseMenuCategoryDto> UpdateAsync(Guid ownerId, Guid id, UpdateMenuCategoryDto dto);
         Task DeleteAsync(Guid ownerId, Guid id);
+        Task<ResponseMenuCategoryDto> RestoreAsync(Guid id);
     }
 }

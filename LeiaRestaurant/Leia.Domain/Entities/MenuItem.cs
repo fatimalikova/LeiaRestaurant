@@ -2,7 +2,7 @@
 
 namespace Leia.Domain.Entities;
 
-public class MenuItem : BaseEntity
+public class MenuItem : BaseEntity, ISoftDelete
 {
     public Guid RestaurantId { get; set; }
     public Restaurant Restaurant { get; set; } = null!;
@@ -19,6 +19,9 @@ public class MenuItem : BaseEntity
     public bool IsAvailable { get; set; } = true;
     public bool IsActive { get; set; } = true;
     public bool DeactivatedByAdmin { get; set; }
+
+    public bool IsDeleted { get; set; }
+    public DateTime? DeletedAt { get; set; }
 
     public ICollection<MenuItemVariant> Variants { get; set; } = new List<MenuItemVariant>();
     public ICollection<ModifierGroup> ModifierGroups { get; set; } = new List<ModifierGroup>();

@@ -126,8 +126,29 @@ namespace Leia.Infrastructure.Services
             var restaurant = await GetRestaurantAsync(ownerId);
             var item = await GetOwnItemAsync(restaurant.Id, id);
 
-            db.MenuItems.Remove(item);
+            item.IsDeleted = true;
+            item.DeletedAt = DateTime.UtcNow;
+            item.IsActive = false;
+            item.UpdatedAt = DateTime.UtcNow;
+
             await db.SaveChangesAsync();
+        }
+
+        public async Task<ResponseMenuItemDto> RestoreAsync(Guid id)
+        {
+            var item = await db.MenuItems.IgnoreQueryFilters()
+                .FirstOrDefaultAsync(i => i.Id == id && i.IsDeleted)
+                ?? throw new NotFoundException("Deleted menu item not found.");
+
+            if (!await db.MenuCategories.AnyAsync(c => c.Id == item.CategoryId))
+                throw new BadRequestException("The category of this item is deleted. Restore the category first.");
+
+            item.IsDeleted = false;
+            item.DeletedAt = null;
+            item.UpdatedAt = DateTime.UtcNow;
+
+            await db.SaveChangesAsync();
+            return await LoadDtoAsync(item.Id);
         }
 
         public async Task SetDeactivatedByAdminAsync(Guid id, bool deactivated)

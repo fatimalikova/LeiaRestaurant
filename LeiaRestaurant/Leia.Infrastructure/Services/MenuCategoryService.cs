@@ -61,8 +61,26 @@ namespace Leia.Infrastructure.Services
             if (await db.MenuItems.AnyAsync(i => i.CategoryId == id))
                 throw new BadRequestException("This category still has items. Move or delete them first.");
 
-            db.MenuCategories.Remove(category);
+            category.IsDeleted = true;
+            category.DeletedAt = DateTime.UtcNow;
+            category.IsActive = false;
+            category.UpdatedAt = DateTime.UtcNow;
+
             await db.SaveChangesAsync();
+        }
+
+        public async Task<ResponseMenuCategoryDto> RestoreAsync(Guid id)
+        {
+            var category = await db.MenuCategories.IgnoreQueryFilters()
+                .FirstOrDefaultAsync(c => c.Id == id && c.IsDeleted)
+                ?? throw new NotFoundException("Deleted category not found.");
+
+            category.IsDeleted = false;
+            category.DeletedAt = null;
+            category.UpdatedAt = DateTime.UtcNow;
+
+            await db.SaveChangesAsync();
+            return (await BuildAsync(category.RestaurantId, false, id))[0];
         }
 
         private async Task<List<ResponseMenuCategoryDto>> BuildAsync(Guid restaurantId, bool publicView, Guid? categoryId)

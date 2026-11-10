@@ -86,6 +86,14 @@ namespace Leia.Api.Controllers
             return Ok(ResponseModelHelper.SuccessResult("Updated."));
         }
 
+        [HttpPut("{id:guid}/restore")]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Restore(Guid id)
+        {
+            var result = await menuItemService.RestoreAsync(id);
+            return Ok(ResponseModelHelper.SuccessResult(result));
+        }
+
         [HttpPost("{id:guid}/variants")]
         [Authorize(Roles = "RestaurantOwner")]
         public async Task<IActionResult> AddVariant(Guid id, CreateVariantDto dto)
