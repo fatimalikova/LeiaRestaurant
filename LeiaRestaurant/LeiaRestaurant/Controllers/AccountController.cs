@@ -16,6 +16,7 @@ namespace Leia.Api.Controllers
         IProfileService profileService) : ControllerBase
     {
         [HttpPost("register/customer")]
+        [AllowAnonymous]
         [EnableRateLimiting("auth")]
         public async Task<IActionResult> RegisterCustomer([FromBody] RegisterDto dto)
         {
@@ -24,6 +25,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("register/restaurant")]
+        [AllowAnonymous]
         [EnableRateLimiting("auth")]
         public async Task<IActionResult> RegisterRestaurant([FromBody] RegisterDto dto)
         {
@@ -32,6 +34,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("login/customer")]
+        [AllowAnonymous]
         [EnableRateLimiting("auth")]
         public async Task<IActionResult> LoginCustomer([FromBody] LoginDto dto)
         {
@@ -40,6 +43,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("login/restaurant")]
+        [AllowAnonymous]
         [EnableRateLimiting("auth")]
         public async Task<IActionResult> LoginRestaurant([FromBody] LoginDto dto)
         {
@@ -48,6 +52,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("login/admin")]
+        [AllowAnonymous]
         [EnableRateLimiting("auth")]
         public async Task<IActionResult> LoginAdmin([FromBody] LoginDto dto)
         {
@@ -56,6 +61,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("verify-2fa")]
+        [AllowAnonymous]
         [EnableRateLimiting("auth")]
         public async Task<IActionResult> Verify2FA([FromBody] Verify2FADto dto)
         {
@@ -64,6 +70,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpGet("confirm-email")]
+        [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail([FromQuery] EmailConfirmDto dto)
         {
             await accountService.ConfirmEmailAsync(dto);
@@ -71,14 +78,16 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("forgot-password")]
+        [AllowAnonymous]
         [EnableRateLimiting("auth")]
         public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordDto dto)
         {
             await accountService.ForgotPasswordAsync(dto);
-            return Ok(ResponseModelHelper.SuccessResult("Password reset token has been sent to your email."));
+            return Ok(ResponseModelHelper.SuccessResult("If the email exists, a reset token has been sent."));
         }
 
         [HttpPost("reset-password")]
+        [AllowAnonymous]
         [EnableRateLimiting("auth")]
         public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto dto)
         {
@@ -87,6 +96,7 @@ namespace Leia.Api.Controllers
         }
 
         [HttpPost("refresh")]
+        [AllowAnonymous]
         public async Task<IActionResult> Refresh([FromBody] RefreshTokenDto dto)
         {
             var result = await accountService.RefreshTokenAsync(dto);

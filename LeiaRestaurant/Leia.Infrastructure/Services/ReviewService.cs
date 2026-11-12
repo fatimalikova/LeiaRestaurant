@@ -84,12 +84,14 @@ namespace Leia.Infrastructure.Services
             if (review.Reply != null)
                 throw new ConflictException("You have already replied to this review.");
 
-            review.Reply = new ReviewReply
+            var reply = new ReviewReply
             {
+                ReviewId = review.Id,
                 OwnerId = ownerId,
                 Content = dto.Content.Trim()
             };
 
+            db.ReviewReplies.Add(reply);
             await db.SaveChangesAsync();
 
             await notificationService.CreateAsync(

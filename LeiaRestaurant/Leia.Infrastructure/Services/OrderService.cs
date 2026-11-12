@@ -353,15 +353,21 @@ namespace Leia.Infrastructure.Services
             return item;
         }
 
-        private static void AddHistory(Order order, OrderStatus? from, OrderStatus to, Guid userId, string? comment)
+        private void AddHistory(Order order, OrderStatus? from, OrderStatus to, Guid userId, string? comment)
         {
-            order.History.Add(new OrderStatusHistory
+            var history = new OrderStatusHistory
             {
+                OrderId = order.Id,
                 FromStatus = from,
                 ToStatus = to,
                 ChangedByUserId = userId,
                 Comment = comment
-            });
+            };
+
+            if (db.Entry(order).State == EntityState.Detached)
+                order.History.Add(history);
+            else
+                db.OrderStatusHistories.Add(history);
         }
 
         private IQueryable<Order> Query() => db.Orders
